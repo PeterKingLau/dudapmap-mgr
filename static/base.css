@@ -1,0 +1,65 @@
+
+.houserholdsLists  .searchPos{ width: 35px; height: 35px;  position: fixed;bottom: 5% ; right:5%; z-index: 10; background: #fff; border-radius: 50%; box-shadow:  0 5px 5px #e3e3e3;}
+.houserholdsLists  .searchPos>img{width: 35px; height: 35px;}
+.lis{ width: 95%; margin: auto; padding: 10px 0 0 0; margin: 10px auto auto auto; overflow: hidden;
+border-radius: 5px; background: #f2f2f2; position: relative;}
+.houserholdsLists .lis .close{position: absolute; top:5px ; right: 10px;}
+.houserholdsLists .lis .close>img{width: 20px; height: 20px;}
+
+.houserholdsLists .lis>ul>li{ display: flex; align-items: flex-start;  justify-content: flex-start; margin:  0 0  10px 0;}
+.houserholdsLists .lis>ul>li>span{font-size: 14px; color: #333;  text-align: right; font-weight: 700; display: inline-block; width: 80px; height: 20px; line-height: 20px;}
+.houserholdsLists .lis>ul>li>div{margin:  0 0  0 10px;}
+.houserholdsLists .lis>ul>li>div.recordText{ font-size: 14px; color: #333; width: calc(100% - 100px); text-align: left;}
+
+.nodate{ padding: 20% 2%;  text-align: center;}
+.nodate >p{ font-size: 16px; color: #666;}
+
+ .vanGridTitle{ display: flex ; align-items: center; justify-content: flex-start; padding:  20px  0 20px  10px;}
+ .vanGridTitle >img{width: 20px; height: 20px; margin:  0  5px 0 0;}
+ .vanGridTitle >span{ font-size: 16px; color: #333; font-weight: 800; display: inline-block; height: 20px; line-height: 20px;}
+
+
+.taskLis{ margin: auto;  overflow-y: auto; padding:  0  2.5%;}
+.taskLis>ul>li{position: relative;   border-radius: 5px; background: #f2f2f2;
+margin:  0 0  10px 0; padding:25px 10px 10px 10px; box-shadow:   0 -2px 3px #e2e2e2; }
+.taskLis>ul>li .rightType{position: absolute; top:0; left: 0; display: inline-block; padding: 3px 10px;
+font-size: 12px; border-radius:  5px 0 5px 0; box-shadow:  0  5px 5px #e2e2e2;color: #fff;}
+.taskLis>ul>li>div{display: flex; justify-content: flex-start; align-items: flex-start; padding: 3px 0;}
+.taskLis>ul>li>div>span{font-size: 14px; font-weight: 800;color: #333; display: inline-block; width:50px; height: 20px; line-height: 20px;}
+.taskLis>ul>li>div>p{font-size: 14px; color: #333; line-height: 20px; width: calc(100% - 90px); text-align:left; 
+margin:  0 0 0 10px; word-break: break-all;}
+.taskLis>ul>li>img{ position: absolute; right: 5px; top:2px; width: 20px; height: 20px;}
+/* border-image: linear-gradient(90deg,#575a7b,#575a7b 20%,#f9655b 0,#f9655b 40%,#f5c070 0,#f5c070 60%,#6658ea 0,#6658ea 80%,#fcc 0) 1;
+border-width: 0;
+border-bottom: 1px solid; */
+
+.wpd{background: #0060ff;}
+.yjpd{background: #00ffe4;}
+.jspd{background: #ff9000;}
+.ywc{background: #03ec0e; }
+.jjpd{background: #f00;}
+.grey{ background: #e2e2e2;}
+.wpd_z{color: #0060ff;}
+.yjpd_z{color: #00ffe4;}
+.jspd_z{color: #ff9000;}
+.ywc_z{color: #03ec0e; }
+.jjpd_z{color: #f00;}
+.textFont .van-dialog__message{ font-size: 16px;}
+.wrapper{  margin: 60% auto auto auto; }
+
+
+.title{ font-size: 16px; text-align: left; border-bottom: 1px dashed #e2e2e2; padding:5%  ;color: #07c160;}
+.selecttime{ display: flex; width: 90%; margin: auto; padding: 5% 0;}
+.selecttime >span{ display: inline-block; width: 80px;font-size: 16px; text-align: left;  height: 35px; line-height: 37px;}
+.selecttime >input{ flex: 1; font-size: 16px; color: #333; line-height: 35px; padding: 0 2%; height: 35px;}
+.buttonStyle{ padding:   0 0 50px 0;}
+
+.van-dialog__header {
+    /* padding-top: 26px; */
+    font-weight: 500;
+    line-height: 24px;
+    padding: 7px;
+    text-align: center;
+    background: #3c9bfb;
+    color: #fff;
+}
