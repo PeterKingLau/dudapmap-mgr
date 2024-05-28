@@ -15,7 +15,7 @@ export let apiUrl = {
     hxdlocationaddLocation: 'hxdlocation/addLocation',//获取所指定员工的定位信息
     hxduserupdateUser: 'hxduser/updateUser',//员工信息修改
     hxduserfindSolo: 'hxduser/findSolo',//查询单个员工信息
-
+    hxdfindWorkeTime: 'hxdrecord/getWorkTimeByDisname',//查询单个员工或所有员工的工作时长
     hxdaddLimitinfo: 'hxdlimit/addLimitinfo',//新增打卡时间段设置
     hxdupdateLimit: 'hxdlimit/updateLimit',//修改打卡时间段设置
     hxdlimmitFindAll: 'hxdlimit/findAll', //查询打卡时段

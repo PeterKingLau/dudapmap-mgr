@@ -31,8 +31,9 @@ module.exports = {
         //target 是后台的接口地址
 
           // target:"http://182.137.194.151:51000/wm-1.0.0/",//测试运动经纬度
-          target:"http://182.137.194.151:51000/hxd-1.0.0/",//测试运动经纬度
-          pathRewrite:{
+       //   target:"http://182.137.194.151:51000/hxd-1.0.0/",//测试运动经纬度
+            target:"http://localhost:8080/hxd-1.0.1/"  ,  
+       pathRewrite:{
            '^/api':''//‘api’代替了target里面的地址   路径重写
           },
         // secure:false,//如果是HTTPS接口，需要配置这个参数

@@ -79,7 +79,12 @@
 
         </div>
         <!-- <div class="more">查看详情</div> -->
-        <div class="more export" @click="exportAllRecord">导出所有员工考勤信息</div>
+      
+        <div  class="more export" @click="exportSingleRecord">导出单个员工考勤</div>
+        <div  class="more export" @click="exportAllRecord">导出所有员工考勤信息</div>
+        
+      
+        
         <van-popup v-model="showYear" position="bottom">
           <van-picker show-toolbar :columns="yearlists" @confirm="onConfirmYear" @cancel="showYear = false" />
         </van-popup>
@@ -142,6 +147,7 @@ export default {
         严重早退时长: 'warningZaotuiTime',
         总工时: 'workTime',
       },
+      fields:{},
       excelShow: false,
       dayDkData: [],
       showDayDk: false,
@@ -190,15 +196,28 @@ export default {
         });
       }, 2000)
     },
+    exportSingleRecord(){
+      let startDay = moment(new Date(this.year + '-' + (this.activeTab + 1)).getTime()).startOf('months').format('YYYY-MM-DD')
+      let params = {
+        'date': startDay,
+        phone: this.userPhone,
+      }
+      getlisting(process.env.BASE_URL_HTTPS + apiUrl.hxdfindWorkeTime,{params}).then(res =>{
+            console.log('res',res.data)
+      })
+
+    },
     exportAllRecord() {
       let startDay = moment(new Date(this.year + '-' + (this.activeTab + 1)).getTime()).startOf('months').format('YYYY-MM-DD')
-      let endDay = moment(new Date(this.year + '-' + (this.activeTab + 1)).getTime()).endOf('months').format('YYYY-MM-DD')
+     // let endDay = moment(new Date(this.year + '-' + (this.activeTab + 1)).getTime()).endOf('months').format('YYYY-MM-DD')
       let params = {
-        start: startDay,
-        end: endDay
+        'date': startDay
+       // end: endDay
       }
       console.log('url',process.env.BASE_URL_HTTPS+apiUrl.hxdrecordfindByDate)
-      getlisting(process.env.BASE_URL_HTTPS + apiUrl.hxdrecordfindByDate, { params }).then(res => {
+    //  getlisting(process.env.BASE_URL_HTTPS + apiUrl.hxdrecordfindByDate, { params }).then(res => {
+      getlisting(process.env.BASE_URL_HTTPS + apiUrl.hxdfindWorkeTime,{params}).then(res =>{
+      
         if (res.data) {
           console.log('data',res.data)
           for (let idk in res.data) {
@@ -270,7 +289,7 @@ export default {
     },
     getFindAll(type) {///查询全部人员
       getlisting(process.env.BASE_URL_HTTPS + apiUrl.hxduserfindAll)
-        .then(res => {
+      .then(res => {
           //    console.log('查询全部',res)
           if (res.data.length) {
             if (type) {
