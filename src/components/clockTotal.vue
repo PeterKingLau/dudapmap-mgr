@@ -114,7 +114,7 @@
       <div class="excelFooter">
         <van-button @click="excelShow = false">取消
         </van-button>
-        <download-excel class="export-excel-wrapper" :data="lists" :header="excelName" :fields="json_fields"
+        <download-excel class="export-excel-wrapper" :data="lists" :header="excelName" :fields="fields"
           :name='excelName' :before-generate="startDownload">
           <van-button style="width:100%" @click="exportExcel">导出
           </van-button>
@@ -128,6 +128,7 @@
 import moment from 'moment'
 import { Notify } from 'vant';
 import { apiUrl, getlisting, postlisting, hxduserfindAll, } from '../utils/apiUrl'
+import { reactive } from 'vue';
 export default {
   data() {
     return {
@@ -197,6 +198,10 @@ export default {
       }, 2000)
     },
     exportSingleRecord(){
+      if(this.userPhone == undefined){
+        alert("请选择统计人");
+        return;
+      }
       let startDay = moment(new Date(this.year + '-' + (this.activeTab + 1)).getTime()).startOf('months').format('YYYY-MM-DD')
       let params = {
         'date': startDay,
@@ -204,6 +209,39 @@ export default {
       }
       getlisting(process.env.BASE_URL_HTTPS + apiUrl.hxdfindWorkeTime,{params}).then(res =>{
             console.log('res',res.data)
+            this.lists = []
+            this.fields = []
+
+
+            if(res.data){
+                let index = 0;
+                for(let idk in res.data){
+                    let itemArr = res.data[idk].split('&')
+                    let item = {}
+                    item['name'] = itemArr[0]
+                    item['phone'] = idk
+                    if(index == 0){
+                         this.fields['姓名'] = 'name'
+                         this.fields['电话'] = 'phone'
+                      }
+                    for(let i = 1;i < itemArr.length;i++){
+                        let arr = 'd'+i.toString()
+                        item[arr] = itemArr[i]
+                        if(index == 0){
+                          let title = this.year + '年' + (this.activeTab + 1).toString() + '月' + i.toString() + '日'
+                          this.fields[title] = arr 
+                        }
+                    }
+                      this.lists.push(item)    
+                
+                      index++;
+                }
+                this.excelShow = true;
+            }
+            console.log('list',this.lists)
+            console.log('title',this.fields)
+            
+           
       })
 
     },
@@ -215,6 +253,7 @@ export default {
        // end: endDay
       }
       console.log('url',process.env.BASE_URL_HTTPS+apiUrl.hxdrecordfindByDate)
+      /**
     //  getlisting(process.env.BASE_URL_HTTPS + apiUrl.hxdrecordfindByDate, { params }).then(res => {
       getlisting(process.env.BASE_URL_HTTPS + apiUrl.hxdfindWorkeTime,{params}).then(res =>{
       
@@ -242,6 +281,45 @@ export default {
 
         }
       })
+       */
+
+       getlisting(process.env.BASE_URL_HTTPS + apiUrl.hxdfindWorkeTime,{params}).then(res =>{
+            console.log('res',res.data)
+            this.lists = []
+            this.fields = []
+
+
+            if(res.data){
+                let index = 0;
+                for(let idk in res.data){
+                    let itemArr = res.data[idk].split('&')
+                    let item = {}
+                    item['name'] = itemArr[0]
+                    item['phone'] = idk
+                    if(index == 0){
+                         this.fields['姓名'] = 'name'
+                         this.fields['电话'] = 'phone'
+                      }
+                    for(let i = 1;i < itemArr.length;i++){
+                        let arr = 'd'+i.toString()
+                        item[arr] = itemArr[i]
+                        if(index == 0){
+                          let title = this.year + '年' + (this.activeTab + 1).toString() + '月' + i.toString() + '日'
+                          this.fields[title] = arr 
+                        }
+                    }
+                      this.lists.push(item)    
+                
+                      index++;
+                }
+                this.excelShow = true;
+            }
+            console.log('list',this.lists)
+            console.log('title',this.fields)
+            
+           
+      })
+
     },
     clearIpt() {
 
