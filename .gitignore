@@ -1,7 +1,10 @@
 .DS_Store
 node_modules/
 /dist/
+.npm-cache/
+.pnpm-store/
 npm-debug.log*
+vite-dev*.log
 yarn-debug.log*
 yarn-error.log*
 

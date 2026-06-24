@@ -1,34 +1,53 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-view v-slot="{ Component, route }">
+      <AppLayout v-if="route.meta.requiresAuth">
+        <component :is="Component" />
+      </AppLayout>
+      <component :is="Component" v-else />
+    </router-view>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'App'
-}
+<script setup>
+import AppLayout from "./layouts/AppLayout.vue";
 </script>
 
 <style>
-*{padding: 0; margin: 0;}
-ul,li{list-style: none;}
-iframe{display: block;}
-/* body{padding-bottom:  env(safe-area-inset-bottom);} */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body,
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+iframe {
+  display: block;
+}
+
+#app {
+  font-family:
+    "Inter",
+    "PingFang SC",
+    "Microsoft YaHei",
+    Arial,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center; margin: auto;
-
+  text-align: center;
 }
-/* @supports (bottom: env(safe-area-inset-bottom)) {
-  div {
-  margin-bottom:  env(safe-area-inset-bottom);
-  }
-}  */
-
 </style>
-
-
-
