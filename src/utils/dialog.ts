@@ -1,8 +1,7 @@
-import { Modal } from "@arco-design/web-vue";
+import { Modal, type ButtonProps } from "antd";
 
-type ConfirmButtonProps = {
+type ConfirmButtonProps = ButtonProps & {
   status?: "normal" | "warning" | "success" | "danger";
-  [key: string]: unknown;
 };
 
 type PrimaryConfirmOptions = {
@@ -27,6 +26,19 @@ function mergeClassName(className?: string): string {
   return [PRIMARY_CONFIRM_CLASS, className].filter(Boolean).join(" ");
 }
 
+function normalizeOkButtonProps(
+  options: PrimaryConfirmOptions,
+): ButtonProps | undefined {
+  const { status: _status, ...okButtonProps } = options.okButtonProps || {};
+
+  return {
+    ...(options.confirmButtonColor || options.okButtonProps?.status === "danger"
+      ? { danger: true }
+      : undefined),
+    ...okButtonProps,
+  };
+}
+
 export function showPrimaryConfirmDialog(
   options: PrimaryConfirmInput = {},
 ): Promise<true> {
@@ -40,18 +52,16 @@ export function showPrimaryConfirmDialog(
       okText: dialogOptions.okText || dialogOptions.confirmButtonText || "确定",
       cancelText:
         dialogOptions.cancelText || dialogOptions.cancelButtonText || "取消",
-      modalClass: mergeClassName(
+      className: mergeClassName(
         dialogOptions.modalClass || dialogOptions.className,
       ),
-      okButtonProps: {
-        ...(dialogOptions.confirmButtonColor
-          ? { status: "danger" }
-          : undefined),
-        ...(dialogOptions.okButtonProps || {}),
+      okButtonProps: normalizeOkButtonProps(dialogOptions),
+      onOk: () => {
+        resolve(true);
       },
-      onOk: () => resolve(true),
-      onCancel: () => reject(new Error("cancel")),
-      onClose: () => reject(new Error("close")),
+      onCancel: () => {
+        reject(new Error("cancel"));
+      },
     });
   });
 }

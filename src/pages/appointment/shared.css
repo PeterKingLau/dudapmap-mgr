@@ -1,0 +1,329 @@
+.react-appointment-page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.react-appointment-header,
+.react-appointment-summary,
+.react-appointment-section {
+  padding: 24px 32px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.react-appointment-header,
+.react-appointment-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.react-appointment-header-main {
+  min-width: 0;
+  text-align: left;
+}
+
+.react-appointment-header-main h1 {
+  margin: 0;
+  color: #202124;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+}
+
+.react-appointment-header-main p {
+  margin: 4px 0 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.react-appointment-header-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: #e8f0fe;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.react-appointment-header-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.react-appointment-stat {
+  min-width: 220px;
+  min-height: 112px;
+  padding: 20px 24px;
+  border: 1px solid #d2e3fc;
+  border-radius: 12px;
+  background: #f0f4f9;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.react-appointment-stat span {
+  display: block;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.react-appointment-stat strong {
+  display: block;
+  margin-top: 12px;
+  color: #1a73e8;
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 600;
+}
+
+.react-appointment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.react-appointment-card {
+  min-width: 0;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.react-appointment-card-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid #f1f3f4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  text-align: left;
+}
+
+.react-appointment-card-header span {
+  display: block;
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.react-appointment-card-header strong {
+  display: block;
+  margin-top: 4px;
+  color: #202124;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.react-appointment-delete-button {
+  color: #dc2626;
+}
+
+.react-appointment-delete-button:hover,
+.react-appointment-delete-button:focus-visible {
+  color: #b91c1c !important;
+  background: #fee2e2 !important;
+}
+
+.react-appointment-pagination {
+  grid-column: 1 / -1;
+  padding-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.react-appointment-info-grid {
+  margin: 0;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  text-align: left;
+}
+
+.react-appointment-info-grid > div {
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid #f1f3f4;
+  border-radius: 8px;
+  background: #f8f9fa;
+  box-sizing: border-box;
+}
+
+.react-appointment-info-grid dt {
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.react-appointment-info-grid dd {
+  margin: 6px 0 0;
+  color: #202124;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.react-appointment-full {
+  grid-column: 1 / -1;
+}
+
+.react-appointment-state {
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #5f6368;
+  text-align: center;
+}
+
+.react-appointment-state > svg {
+  width: 44px;
+  height: 44px;
+  color: #9aa0a6;
+}
+
+.react-appointment-state h3 {
+  margin: 4px 0 0;
+  color: #202124;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+}
+
+.react-appointment-state p {
+  margin: 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.react-appointment-state.muted {
+  border: 1px dashed #dadce0;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+.react-appointment-search-form {
+  display: grid;
+  grid-template-columns: minmax(280px, 520px) auto;
+  align-items: end;
+  gap: 16px 24px;
+}
+
+.react-appointment-search-form .ant-form-item {
+  margin-bottom: 0;
+}
+
+.react-appointment-search-form .ant-input-affix-wrapper {
+  width: 100%;
+}
+
+html[data-theme="dark"] .react-appointment-page {
+  background: #111827;
+}
+
+html[data-theme="dark"] .react-appointment-header,
+html[data-theme="dark"] .react-appointment-summary,
+html[data-theme="dark"] .react-appointment-section,
+html[data-theme="dark"] .react-appointment-card {
+  border-color: #30363d;
+  background: #161b22;
+}
+
+html[data-theme="dark"] .react-appointment-header-main h1,
+html[data-theme="dark"] .react-appointment-card-header strong,
+html[data-theme="dark"] .react-appointment-info-grid dd,
+html[data-theme="dark"] .react-appointment-state h3 {
+  color: #f3f4f6;
+}
+
+html[data-theme="dark"] .react-appointment-header-main p,
+html[data-theme="dark"] .react-appointment-card-header span,
+html[data-theme="dark"] .react-appointment-info-grid dt,
+html[data-theme="dark"] .react-appointment-state,
+html[data-theme="dark"] .react-appointment-state p {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-appointment-header-icon {
+  background: rgba(56, 139, 253, 0.14);
+}
+
+html[data-theme="dark"] .react-appointment-stat {
+  border-color: #30363d;
+  background: #161b22;
+}
+
+html[data-theme="dark"] .react-appointment-stat span {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-appointment-card-header {
+  border-bottom-color: #30363d;
+}
+
+html[data-theme="dark"] .react-appointment-delete-button {
+  color: #f87171;
+}
+
+html[data-theme="dark"] .react-appointment-delete-button:hover,
+html[data-theme="dark"] .react-appointment-delete-button:focus-visible {
+  color: #fecaca !important;
+  background: rgba(248, 113, 113, 0.16) !important;
+}
+
+html[data-theme="dark"] .react-appointment-pagination {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-appointment-info-grid > div,
+html[data-theme="dark"] .react-appointment-state.muted {
+  border-color: #30363d;
+  background: #0d1117;
+}
+
+@media (max-width: 1180px) {
+  .react-appointment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 960px) {
+  .react-appointment-header,
+  .react-appointment-summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .react-appointment-stat {
+    width: 100%;
+  }
+
+  .react-appointment-search-form,
+  .react-appointment-info-grid {
+    grid-template-columns: 1fr;
+  }
+}

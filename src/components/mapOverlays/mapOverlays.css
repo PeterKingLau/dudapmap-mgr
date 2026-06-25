@@ -1,0 +1,120 @@
+.react-map-ripple-overlay {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--react-overlay-color, red);
+  text-align: center;
+}
+
+.react-map-ripple-overlay.is-active {
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+}
+
+.react-map-ripple-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.react-map-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--react-overlay-color, red);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: react-map-ripple 2s linear infinite;
+}
+
+.react-map-ripple:nth-child(1) {
+  animation-delay: 1s;
+}
+
+.react-map-ripple:nth-child(2) {
+  animation-delay: 2s;
+}
+
+@keyframes react-map-ripple {
+  to {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+  }
+}
+
+.react-map-tel-overlay {
+  position: absolute;
+  width: 116px;
+  height: 45px;
+  padding: 5px;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: 5px -2px 5px #e2e2e2;
+  animation: react-map-tel-float 1.5s infinite;
+}
+
+.react-map-tel-overlay.is-active {
+  box-shadow: 0 8px 24px rgba(26, 115, 232, 0.2);
+}
+
+.react-map-tel-row {
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  padding: 2px 0;
+}
+
+.react-map-tel-row img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.react-map-tel-row span {
+  display: inline-block;
+  height: 20px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.react-map-tel-arrow {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  display: inline-block;
+  margin-left: -5px;
+  border: 10px solid #ffffff;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+}
+
+@keyframes react-map-tel-float {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, -5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+html[data-theme="dark"] .react-map-tel-overlay {
+  background: #161b22;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+}
+
+html[data-theme="dark"] .react-map-tel-row span {
+  color: #f3f4f6;
+}
+
+html[data-theme="dark"] .react-map-tel-arrow {
+  border-top-color: #161b22;
+}

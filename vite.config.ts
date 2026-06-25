@@ -3,13 +3,16 @@ import { fileURLToPath } from "node:url";
 import {
   defineConfig,
   loadEnv,
-  type Plugin,
   type ProxyOptions,
   type UserConfig,
 } from "vite";
-import vue from "@vitejs/plugin-vue";
+import react from "@vitejs/plugin-react";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const DEFAULT_DEV_PORT = 8080;
+const OUTPUT_DIR = "dist";
+const STATIC_ASSETS_DIR = "static";
+const PRODUCTION_BASE = "./";
 
 type AppEnv = Record<string, string>;
 
@@ -51,97 +54,91 @@ function createManualChunks(id: string): string | undefined {
   }
 
   const normalizedId = id.split(path.sep).join("/");
+  const normalizedPnpmId = normalizedId.replace(/\//g, "+");
+  const hasPackage = (packageName: string) => {
+    if (packageName.endsWith("-")) {
+      return (
+        normalizedId.includes(`/node_modules/${packageName}`) ||
+        normalizedPnpmId.includes(`+node_modules+.pnpm+${packageName}`)
+      );
+    }
+
+    return (
+      normalizedId.includes(`/node_modules/${packageName}/`) ||
+      normalizedPnpmId.includes(
+        `+node_modules+.pnpm+${packageName.replace("/", "+")}@`,
+      )
+    );
+  };
   const chunks = [
     {
-      name: "vue-vendor",
-      packages: ["/vue/", "/vue-router/", "/pinia/"],
+      name: "react-vendor",
+      packages: ["react", "react-dom", "react-router-dom", "zustand"],
     },
     {
-      name: "arco-vendor",
-      packages: ["/@arco-design/"],
-    },
-    {
-      name: "map-vendor",
-      packages: ["/vue-baidu-map-3x/"],
+      name: "antd-vendor",
+      packages: ["antd", "@ant-design", "rc-", "@rc-component"],
     },
     {
       name: "icon-vendor",
-      packages: ["/@iconify/"],
+      packages: ["@iconify"],
     },
     {
       name: "excel-vendor",
-      packages: ["/write-excel-file/"],
+      packages: ["write-excel-file"],
     },
     {
       name: "utils-vendor",
-      packages: ["/axios/", "/dayjs/"],
+      packages: ["axios", "dayjs"],
     },
   ];
 
   return chunks.find((chunk) =>
-    chunk.packages.some((packageName) =>
-      normalizedId.includes(`/node_modules${packageName}`),
-    ),
+    chunk.packages.some((packageName) => hasPackage(packageName)),
   )?.name;
-}
-
-function requireAssetCompatPlugin(): Plugin {
-  const assetRequireRE =
-    /require\((['"])(\.{1,2}\/[^'"]+\.(?:png|jpe?g|gif|svg|webp))\1\)/g;
-
-  return {
-    name: "require-asset-compat",
-    enforce: "pre",
-    transform(code: string, id: string) {
-      if (!/\.(vue|js)$/.test(id) || !assetRequireRE.test(code)) {
-        return null;
-      }
-
-      assetRequireRE.lastIndex = 0;
-      return {
-        code: code.replace(assetRequireRE, (_match, _quote, assetPath) => {
-          return `$asset('${path.basename(assetPath)}')`;
-        }),
-        map: null,
-      };
-    },
-  };
 }
 
 export default defineConfig(({ mode }): UserConfig => {
   const isProduction = mode === "production";
   const env = loadEnv(mode, __dirname, "");
-  const plugins = [
-    normalizeBoolean(env.VITE_ENABLE_REQUIRE_ASSET_COMPAT)
-      ? requireAssetCompatPlugin()
-      : null,
-    vue(),
-  ].filter((plugin): plugin is Plugin => Boolean(plugin));
 
   return {
-    base: env.VITE_PUBLIC_BASE || (isProduction ? "./" : "/"),
-    plugins,
+    base: env.VITE_PUBLIC_BASE || (isProduction ? PRODUCTION_BASE : "/"),
+    plugins: [react()],
     resolve: {
-      extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"],
+      extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json"],
       alias: {
         "@": path.resolve(__dirname, "src"),
       },
     },
     server: {
       host: env.VITE_DEV_HOST || "localhost",
-      port: Number(process.env.PORT || env.VITE_DEV_PORT || 8080),
+      port: Number(process.env.PORT || env.VITE_DEV_PORT || DEFAULT_DEV_PORT),
       open: normalizeBoolean(env.VITE_DEV_OPEN),
       proxy: createProxy(env),
     },
+    optimizeDeps: {
+      include: [
+        "@iconify/react",
+        "antd",
+        "axios",
+        "dayjs",
+        "react",
+        "react-dom",
+        "react-router-dom",
+        "zustand",
+      ],
+    },
     build: {
-      outDir: "dist",
-      assetsDir: "static",
+      outDir: OUTPUT_DIR,
+      assetsDir: STATIC_ASSETS_DIR,
       target: "es2018" as const,
       cssCodeSplit: true,
       minify: "terser" as const,
       sourcemap: normalizeBoolean(env.VITE_BUILD_SOURCEMAP, false),
-      chunkSizeWarningLimit: 1000,
+      chunkSizeWarningLimit: 1500,
       rollupOptions: {
+        input: path.resolve(__dirname, "index.html"),
         output: {
           manualChunks: createManualChunks,
         },

@@ -1,0 +1,852 @@
+.react-att-page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.react-att-header,
+.react-att-section,
+.react-att-loading,
+.react-att-panel {
+  padding: 24px 32px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.react-att-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.react-att-header-main {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+}
+
+.react-att-header-main h1 {
+  margin: 0;
+  color: #202124;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+}
+
+.react-att-header-main p {
+  margin: 4px 0 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.react-att-header-side {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.react-att-header-icon,
+.react-att-export-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: #e8f0fe;
+  color: #1a73e8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.react-att-header-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.react-att-header-icon svg,
+.react-att-export-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.react-att-loading,
+.react-att-empty {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #5f6368;
+}
+
+.react-att-empty {
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.react-att-empty p {
+  margin: -6px 0 0;
+  color: #5f6368;
+  font-size: 14px;
+}
+
+.react-att-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.react-att-stat {
+  min-height: 112px;
+  padding: 20px 24px;
+  border: 1px solid #dadce0;
+  border-radius: 12px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.react-att-stat span {
+  display: block;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.react-att-stat strong {
+  display: block;
+  margin-top: 12px;
+  color: #202124;
+  font-size: 30px;
+  line-height: 38px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.react-att-stat.theme-blue {
+  background: #f0f4f9;
+  border-color: #d2e3fc;
+}
+
+.react-att-stat.theme-blue strong {
+  color: #1a73e8;
+}
+
+.react-att-stat.theme-green {
+  background: #e6f4ea;
+  border-color: #ceead6;
+}
+
+.react-att-stat.theme-green strong {
+  color: #137333;
+}
+
+.react-att-stat.theme-orange {
+  background: #fef7e0;
+  border-color: #fce8b2;
+}
+
+.react-att-stat.theme-orange strong {
+  color: #b06000;
+}
+
+.react-att-stat.theme-red {
+  background: #fce8e6;
+  border-color: #fad2cf;
+}
+
+.react-att-stat.theme-red strong {
+  color: #c5221f;
+}
+
+.react-att-section-title {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  text-align: left;
+}
+
+.react-att-section-title h2 {
+  margin: 0;
+  color: #202124;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+.react-att-section-title span {
+  display: block;
+  margin-top: 4px;
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.react-att-table {
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.react-att-table .ant-table {
+  background: transparent;
+}
+
+.react-att-table .ant-table-thead > tr > th {
+  background: #f8f9fa;
+  color: #5f6368;
+  font-weight: 500;
+}
+
+.react-att-result-card {
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.react-att-result-row {
+  min-height: 56px;
+  padding: 12px 18px;
+  border-top: 1px solid #f1f3f4;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  text-align: left;
+}
+
+.react-att-result-row:first-child {
+  border-top: 0;
+}
+
+.react-att-result-row span {
+  color: #5f6368;
+  font-size: 13px;
+}
+
+.react-att-result-row strong {
+  color: #202124;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.react-att-filter {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px 20px;
+  align-items: end;
+}
+
+.react-att-filter .ant-form-item {
+  margin-bottom: 0;
+}
+
+.react-att-month-tabs {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.react-att-month-tab {
+  height: 38px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #5f6368;
+  cursor: pointer;
+}
+
+.react-att-month-tab:hover,
+.react-att-month-tab.active {
+  border-color: #13b996;
+  color: #0f9f82;
+  background: rgba(19, 185, 150, 0.08);
+}
+
+.react-att-actions {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.react-att-inline-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.react-att-actions .ant-btn,
+.react-att-inline-actions .ant-btn,
+.react-att-bottom-actions .ant-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.react-att-actions .ant-btn svg,
+.react-att-inline-actions .ant-btn svg,
+.react-att-bottom-actions .ant-btn svg {
+  width: 15px;
+  height: 15px;
+  color: currentColor;
+  flex: none;
+}
+
+.react-att-inline-actions .ant-btn .ant-btn-icon,
+.react-att-actions .ant-btn .ant-btn-icon,
+.react-att-bottom-actions .ant-btn .ant-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.react-att-muted {
+  margin: 0;
+  color: #5f6368;
+  font-size: 14px;
+  text-align: left;
+}
+
+.react-att-modal-summary {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1a73e8;
+}
+
+.react-att-day-list {
+  display: grid;
+  gap: 10px;
+}
+
+.react-att-bottom-actions {
+  margin-top: 16px;
+  padding: 0 24px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.react-clock-opt-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px 24px;
+}
+
+.react-clock-opt-grid.compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.react-clock-period-list {
+  display: grid;
+  gap: 14px;
+}
+
+.react-clock-period-row {
+  min-height: 74px;
+  padding: 14px 16px;
+  border: 1px solid #eef1f4;
+  border-radius: 8px;
+  background: #f8f9fa;
+  display: grid;
+  grid-template-columns: 96px repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: end;
+}
+
+.react-clock-period-row strong {
+  align-self: center;
+  color: #202124;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.react-clock-period-row .ant-form-item {
+  margin-bottom: 0;
+}
+
+.react-clock-period-row .ant-picker {
+  width: 100%;
+}
+
+.react-clock-opt-page .react-att-section + .react-att-section {
+  margin-top: 20px;
+}
+
+.react-clock-opt-mode {
+  flex: none;
+  margin-top: 0 !important;
+  padding: 4px 10px;
+  border: 1px solid rgba(19, 185, 150, 0.22);
+  border-radius: 999px;
+  background: rgba(19, 185, 150, 0.08);
+  color: #0f9f82 !important;
+  font-size: 12px !important;
+  line-height: 18px !important;
+}
+
+.react-clock-opt-form.is-viewing .ant-picker-disabled,
+.react-clock-opt-form.is-viewing .ant-input-number-disabled,
+.react-clock-opt-form.is-viewing .ant-input-number-group-wrapper-disabled .ant-input-number,
+.react-clock-opt-form.is-viewing .ant-radio-button-wrapper-disabled {
+  cursor: default;
+}
+
+.react-clock-opt-form.is-viewing .ant-picker-disabled,
+.react-clock-opt-form.is-viewing .ant-input-number-disabled,
+.react-clock-opt-form.is-viewing .ant-input-number-group-wrapper-disabled .ant-input-number,
+.react-clock-opt-form.is-viewing .ant-input-number-group-addon,
+.react-clock-opt-form.is-viewing .ant-radio-button-wrapper-disabled {
+  background: #f8f9fa;
+  color: #202124;
+}
+
+.react-clock-opt-form.is-viewing .ant-picker-disabled input,
+.react-clock-opt-form.is-viewing .ant-input-number-disabled input {
+  color: #202124;
+  cursor: default;
+}
+
+.react-clock-opt-form.is-viewing
+  .ant-radio-button-wrapper-disabled.ant-radio-button-wrapper-checked {
+  border-color: #13b996;
+  background: rgba(19, 185, 150, 0.1);
+  color: #0f9f82;
+}
+
+.react-clock-opt-form.is-viewing
+  .ant-radio-button-wrapper-disabled.ant-radio-button-wrapper-checked::before {
+  background-color: #13b996;
+}
+
+.react-clock-count-options {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.react-clock-count-options .ant-radio-button-wrapper {
+  min-width: 54px;
+  height: 34px;
+  padding: 0 16px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #202124;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.react-clock-count-options .ant-radio-button-wrapper:hover {
+  border-color: #13b996;
+  color: #0f9f82;
+}
+
+.react-clock-count-options .ant-radio-button-wrapper:not(:first-child) {
+  border-inline-start: 1px solid #dadce0;
+}
+
+.react-clock-count-options .ant-radio-button-wrapper::before {
+  display: none;
+}
+
+.react-clock-count-options .ant-radio-button-wrapper-checked {
+  border-color: #13b996;
+  background: #13b996;
+  color: #ffffff;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(19, 185, 150, 0.18);
+}
+
+.react-clock-count-options .ant-radio-button-wrapper-checked:not(
+    .ant-radio-button-wrapper-disabled
+  ):hover {
+  border-color: #13b996;
+  background: #10a987;
+  color: #ffffff;
+}
+
+.react-clock-opt-form.is-viewing
+  .react-clock-count-options
+  .ant-radio-button-wrapper {
+  box-shadow: none;
+}
+
+.react-clock-opt-grid .ant-picker,
+.react-clock-opt-grid .ant-input-number,
+.react-clock-opt-grid .ant-input-number-group-wrapper {
+  width: 100%;
+}
+
+.react-clock-opt-unit-input {
+  width: 100%;
+}
+
+.react-clock-opt-unit-input .ant-input-number {
+  flex: 1;
+}
+
+.react-clock-opt-unit {
+  min-width: 40px;
+  padding: 0 11px;
+  border: 1px solid #d9d9d9;
+  border-left: 0;
+  border-radius: 0 6px 6px 0;
+  background: rgba(0, 0, 0, 0.02);
+  color: #202124;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 30px;
+}
+
+.react-att-export {
+  padding: 8px 0 0;
+  text-align: center;
+}
+
+.react-att-export-icon {
+  margin: 0 auto;
+  width: 56px;
+  height: 56px;
+}
+
+.react-att-export h3 {
+  margin: 16px 0 8px;
+  color: #202124;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.react-att-export p {
+  margin: 0 0 16px;
+  color: #5f6368;
+  font-size: 14px;
+}
+
+.react-att-export p span {
+  color: #13b996;
+  font-weight: 500;
+}
+
+.react-att-modal .ant-modal-content {
+  overflow: hidden;
+  padding: 0;
+}
+
+.react-att-modal .ant-modal-header {
+  margin: 0;
+  padding: 16px 24px;
+  border-bottom: 1px solid #dadce0;
+}
+
+.react-att-modal .ant-modal-body {
+  padding: 24px;
+}
+
+html[data-theme="dark"] .react-att-header,
+html[data-theme="dark"] .react-att-section,
+html[data-theme="dark"] .react-att-loading,
+html[data-theme="dark"] .react-att-panel,
+html[data-theme="dark"] .react-att-empty {
+  border-color: #30363d;
+  background: #161b22;
+}
+
+html[data-theme="dark"] .react-att-header-main h1,
+html[data-theme="dark"] .react-att-section-title h2,
+html[data-theme="dark"] .react-att-result-row strong,
+html[data-theme="dark"] .react-att-export h3 {
+  color: #f3f4f6;
+}
+
+html[data-theme="dark"] .react-att-header-main p,
+html[data-theme="dark"] .react-att-section-title span,
+html[data-theme="dark"] .react-att-loading,
+html[data-theme="dark"] .react-att-empty,
+html[data-theme="dark"] .react-att-empty p,
+html[data-theme="dark"] .react-att-result-row span,
+html[data-theme="dark"] .react-att-export p,
+html[data-theme="dark"] .react-att-muted {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-att-header-icon,
+html[data-theme="dark"] .react-att-export-icon {
+  background: rgba(56, 139, 253, 0.14);
+  color: #58a6ff;
+}
+
+html[data-theme="dark"] .react-att-stat {
+  border-color: #30363d;
+  background: #161b22;
+}
+
+html[data-theme="dark"] .react-att-stat span {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-att-stat.theme-blue {
+  background: rgba(56, 139, 253, 0.12);
+  border-color: rgba(56, 139, 253, 0.24);
+}
+
+html[data-theme="dark"] .react-att-stat.theme-blue strong {
+  color: #58a6ff;
+}
+
+html[data-theme="dark"] .react-att-stat.theme-green {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.24);
+}
+
+html[data-theme="dark"] .react-att-stat.theme-green strong {
+  color: #34d399;
+}
+
+html[data-theme="dark"] .react-att-stat.theme-orange {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.24);
+}
+
+html[data-theme="dark"] .react-att-stat.theme-orange strong {
+  color: #fbbf24;
+}
+
+html[data-theme="dark"] .react-att-stat.theme-red {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.24);
+}
+
+html[data-theme="dark"] .react-att-stat.theme-red strong {
+  color: #f87171;
+}
+
+html[data-theme="dark"] .react-att-table,
+html[data-theme="dark"] .react-att-result-card {
+  border-color: #30363d;
+}
+
+html[data-theme="dark"] .react-att-table .ant-table,
+html[data-theme="dark"] .react-att-table .ant-table-container,
+html[data-theme="dark"] .react-att-table .ant-table-cell {
+  background: #161b22;
+  color: #d1d5db;
+  border-color: #30363d !important;
+}
+
+html[data-theme="dark"] .react-att-table .ant-table-thead > tr > th {
+  background: #0d1117;
+  color: #9ca3af;
+  border-color: #30363d !important;
+}
+
+html[data-theme="dark"] .react-att-result-row {
+  border-color: #30363d;
+}
+
+html[data-theme="dark"] .react-att-modal-summary {
+  border-color: #30363d;
+  background: #0d1117;
+  color: #58a6ff;
+}
+
+html[data-theme="dark"] .react-att-month-tab {
+  border-color: #30363d;
+  background: #0d1117;
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-att-month-tab:hover,
+html[data-theme="dark"] .react-att-month-tab.active {
+  border-color: #13b996;
+  color: #5eead4;
+  background: rgba(19, 185, 150, 0.12);
+}
+
+html[data-theme="dark"] .react-clock-opt-mode {
+  border-color: rgba(19, 185, 150, 0.28);
+  background: rgba(19, 185, 150, 0.12);
+  color: #5eead4 !important;
+}
+
+html[data-theme="dark"] .react-clock-period-row {
+  border-color: #30363d;
+  background: #0d1117;
+}
+
+html[data-theme="dark"] .react-clock-period-row strong {
+  color: #f3f4f6;
+}
+
+html[data-theme="dark"] .react-clock-opt-form.is-viewing .ant-picker-disabled,
+html[data-theme="dark"] .react-clock-opt-form.is-viewing .ant-input-number-disabled,
+html[data-theme="dark"] .react-clock-opt-form.is-viewing .ant-input-number-group-wrapper-disabled .ant-input-number,
+html[data-theme="dark"] .react-clock-opt-form.is-viewing .ant-input-number-group-addon,
+html[data-theme="dark"] .react-clock-opt-form.is-viewing .ant-radio-button-wrapper-disabled {
+  border-color: #30363d;
+  background: #0d1117;
+  color: #e5e7eb;
+}
+
+html[data-theme="dark"] .react-clock-opt-form.is-viewing .ant-picker-disabled input,
+html[data-theme="dark"] .react-clock-opt-form.is-viewing .ant-input-number-disabled input {
+  color: #e5e7eb;
+}
+
+html[data-theme="dark"]
+  .react-clock-opt-form.is-viewing
+  .ant-radio-button-wrapper-disabled.ant-radio-button-wrapper-checked {
+  border-color: #13b996;
+  background: rgba(19, 185, 150, 0.16);
+  color: #5eead4;
+}
+
+html[data-theme="dark"]
+  .react-clock-opt-form.is-viewing
+  .ant-radio-button-wrapper-disabled.ant-radio-button-wrapper-checked::before {
+  background-color: #13b996;
+}
+
+html[data-theme="dark"] .react-clock-count-options .ant-radio-button-wrapper {
+  border-color: #30363d;
+  background: #0d1117;
+  color: #d1d5db;
+}
+
+html[data-theme="dark"]
+  .react-clock-count-options
+  .ant-radio-button-wrapper:not(:first-child) {
+  border-inline-start-color: #30363d;
+}
+
+html[data-theme="dark"]
+  .react-clock-count-options
+  .ant-radio-button-wrapper-checked {
+  border-color: #13b996;
+  background: #13b996;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(19, 185, 150, 0.2);
+}
+
+html[data-theme="dark"]
+  .react-clock-count-options
+  .ant-radio-button-wrapper:not(.ant-radio-button-wrapper-checked):hover {
+  border-color: #13b996;
+  color: #5eead4;
+}
+
+html[data-theme="dark"] .react-clock-opt-unit {
+  border-color: #30363d;
+  background: #161b22;
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .react-att-bottom-actions {
+  background: transparent;
+}
+
+html[data-theme="dark"] .react-att-actions .ant-btn:not(.ant-btn-primary),
+html[data-theme="dark"] .react-att-inline-actions .ant-btn:not(.ant-btn-primary),
+html[data-theme="dark"] .react-att-bottom-actions .ant-btn:not(.ant-btn-primary) {
+  border-color: #30363d;
+  background: #161b22;
+  color: #d1d5db;
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .react-att-actions .ant-btn:not(.ant-btn-primary):hover,
+html[data-theme="dark"] .react-att-inline-actions .ant-btn:not(.ant-btn-primary):hover,
+html[data-theme="dark"] .react-att-bottom-actions .ant-btn:not(.ant-btn-primary):hover {
+  border-color: #13b996;
+  background: rgba(19, 185, 150, 0.1);
+  color: #5eead4;
+}
+
+html[data-theme="dark"] .react-att-actions .ant-btn-primary,
+html[data-theme="dark"] .react-att-inline-actions .ant-btn-primary,
+html[data-theme="dark"] .react-att-bottom-actions .ant-btn-primary {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .react-att-modal .ant-modal-content {
+  border: 1px solid #30363d;
+  background: #161b22;
+  color: #f3f4f6;
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.42);
+}
+
+html[data-theme="dark"] .react-att-modal .ant-modal-header,
+html[data-theme="dark"] .react-att-modal .ant-modal-body {
+  background: #161b22;
+}
+
+html[data-theme="dark"] .react-att-modal .ant-modal-header {
+  border-bottom-color: #30363d;
+}
+
+html[data-theme="dark"] .react-att-modal .ant-modal-title {
+  color: #f3f4f6;
+}
+
+html[data-theme="dark"] .react-att-modal .ant-modal-close {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-att-modal .ant-modal-close:hover {
+  color: #f3f4f6;
+  background: #21262d;
+}
+
+html[data-theme="dark"] .react-att-filter .ant-form-item-label > label {
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .react-att-filter .ant-select-selector,
+html[data-theme="dark"] .react-att-filter .ant-picker {
+  border-color: #30363d;
+  background: #0d1117;
+}
+
+@media (max-width: 1280px) {
+  .react-att-filter,
+  .react-att-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .react-att-month-tabs {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}

@@ -1,16 +1,16 @@
+import { message as antdMessage } from "antd";
 import axios, {
   type AxiosRequestConfig,
   type AxiosResponse,
   type Method,
 } from "axios";
-import { Message } from "@arco-design/web-vue";
-import router from "../router";
 import { ROUTE_PATHS } from "../router/paths";
-import { useAppStore } from "../store";
+import { useAppStore } from "../store/useAppStore";
 
 const baseUrl = import.meta.env.VITE_BASE_URL_HTTPS;
 const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL;
 const requestTimeout = 6000000;
+
 type PlainRecord = Record<string, unknown>;
 type RequestPayload =
   | PlainRecord
@@ -29,7 +29,7 @@ interface BusinessResponseData extends PlainRecord {
   msg?: string;
 }
 
-interface AppRequestConfig extends Omit<AxiosRequestConfig, "data" | "params"> {
+export interface AppRequestConfig extends Omit<AxiosRequestConfig, "data" | "params"> {
   cache?: boolean;
   cacheTtl?: number;
   checkBusinessCode?: boolean;
@@ -61,10 +61,8 @@ interface CachedResponse {
   value: unknown;
 }
 
-type LoadingToast = ReturnType<typeof Message.loading> | (() => void);
-
 const bodyMethods = ["post", "put", "patch"];
-const successCodes = new Set([0, "0", 200, "200", true]);
+const successCodes = new Set<BusinessCode>([0, "0", 200, "200", true]);
 const loginExpiredCodes = new Set<BusinessCode>([
   401,
   "401",
@@ -79,7 +77,7 @@ const httpErrorMessages: Record<number, string> = {
   500: "服务异常",
   502: "网关错误",
   503: "服务暂不可用",
-  504: "请求超时！",
+  504: "请求超时",
 };
 const businessErrorMessages: Record<string, string> = {
   401: "登录已失效，请重新登录",
@@ -89,8 +87,9 @@ const businessErrorMessages: Record<string, string> = {
 
 const pendingRequests = new Map<string, AbortController>();
 const responseCache = new Map<string, CachedResponse>();
+const MAX_RESPONSE_CACHE_SIZE = 80;
 let loadingCount = 0;
-let loadingToast: LoadingToast | null = null;
+let loadingToast: ReturnType<typeof antdMessage.loading> | null = null;
 let isHandlingLoginExpired = false;
 
 export const http = axios.create({
@@ -112,7 +111,7 @@ function getSessionDisname(): string {
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo") || "{}");
 
     return userInfo.useravator || sessionStorage.getItem("useravator") || "";
-  } catch (error) {
+  } catch {
     return sessionStorage.getItem("useravator") || "";
   }
 }
@@ -235,12 +234,12 @@ function getRequestKey({
   ].join("&");
 }
 
-function startLoading(message: string): void {
+function startLoading(content: string): void {
   loadingCount += 1;
 
   if (!loadingToast) {
-    loadingToast = Message.loading({
-      content: message,
+    loadingToast = antdMessage.loading({
+      content,
       duration: 0,
     });
   }
@@ -250,22 +249,23 @@ function closeLoading(): void {
   loadingCount = Math.max(loadingCount - 1, 0);
 
   if (loadingCount === 0 && loadingToast) {
-    if (typeof loadingToast === "function") {
-      loadingToast();
-    } else {
-      loadingToast.close?.();
-    }
-
+    loadingToast();
     loadingToast = null;
   }
 }
 
 function clearLoginState(): void {
-  const store = useAppStore();
-
-  store.clearLogin();
+  useAppStore.getState().clearLogin();
   sessionStorage.removeItem("userInfo");
   sessionStorage.removeItem("useravator");
+}
+
+function getCurrentRoutePath(): string {
+  return (
+    window.location.hash.replace(/^#/, "") ||
+    `${window.location.pathname}${window.location.search}` ||
+    "/"
+  );
 }
 
 function handleLoginExpired(): void {
@@ -275,17 +275,14 @@ function handleLoginExpired(): void {
 
   isHandlingLoginExpired = true;
   clearLoginState();
-  Message.error(httpErrorMessages[401]);
+  antdMessage.error(httpErrorMessages[401]);
 
-  const currentPath = router.currentRoute.value.fullPath;
+  const currentPath = getCurrentRoutePath();
 
-  if (router.currentRoute.value.path !== ROUTE_PATHS.auth.login) {
-    router.replace({
-      path: ROUTE_PATHS.auth.login,
-      query: {
-        redirect: currentPath,
-      },
-    });
+  if (!currentPath.startsWith(ROUTE_PATHS.auth.login)) {
+    window.location.hash = `${ROUTE_PATHS.auth.login}?redirect=${encodeURIComponent(
+      currentPath,
+    )}`;
   }
 
   window.setTimeout(() => {
@@ -309,8 +306,8 @@ function handleRequestError(error: unknown, showError = true): void {
     return;
   }
 
-  Message.error(
-    httpErrorMessages[status] || error.message || "请求失败，请稍后重试",
+  antdMessage.error(
+    httpErrorMessages[status || 0] || error.message || "请求失败，请稍后重试",
   );
 }
 
@@ -325,6 +322,36 @@ function createBusinessError(
   error.response = response;
 
   return error;
+}
+
+function pruneExpiredResponseCache(): void {
+  const now = Date.now();
+
+  responseCache.forEach((value, key) => {
+    if (value.expiresAt <= now) {
+      responseCache.delete(key);
+    }
+  });
+}
+
+function setCachedResponse(key: string, value: CachedResponse): void {
+  pruneExpiredResponseCache();
+
+  if (responseCache.has(key)) {
+    responseCache.delete(key);
+  }
+
+  responseCache.set(key, value);
+
+  while (responseCache.size > MAX_RESPONSE_CACHE_SIZE) {
+    const oldestKey = responseCache.keys().next().value;
+
+    if (!oldestKey) {
+      break;
+    }
+
+    responseCache.delete(oldestKey);
+  }
 }
 
 function validateBusinessResponse(
@@ -347,7 +374,7 @@ function validateBusinessResponse(
     "请求失败，请稍后重试";
 
   if (showError) {
-    Message.error(message);
+    antdMessage.error(message);
   }
 
   throw createBusinessError(response, message, code);
@@ -439,7 +466,7 @@ export function request<T = unknown>(
       const result = unwrap ? response.data : response;
 
       if (shouldCache) {
-        responseCache.set(cacheKey, {
+        setCachedResponse(cacheKey, {
           expiresAt: Date.now() + cacheTtl,
           value: result,
         });
@@ -526,13 +553,13 @@ export function getImageUrl(path = ""): string {
 
 export function getCurrentDisname(): string {
   try {
-    const store = useAppStore();
-    const loginInfo = store.getLogin;
+    const store = useAppStore.getState();
+    const loginInfo = store.login;
     const loginDisname =
       loginInfo && typeof loginInfo === "object" ? loginInfo.useravator : "";
 
-    return loginDisname || store.getDisname || getSessionDisname();
-  } catch (error) {
+    return loginDisname || store.disname || getSessionDisname();
+  } catch {
     return getSessionDisname();
   }
 }

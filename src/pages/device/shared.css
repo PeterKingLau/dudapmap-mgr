@@ -1,0 +1,675 @@
+.react-device-page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.react-device-header,
+.react-device-section,
+.react-device-state,
+.react-device-panel {
+  padding: 24px 32px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.react-device-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.react-device-header-main {
+  min-width: 0;
+  text-align: left;
+}
+
+.react-device-header-main h1 {
+  margin: 0;
+  color: #202124;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+}
+
+.react-device-header-main p {
+  margin: 4px 0 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.react-device-header-side {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.react-device-header-icon,
+.react-device-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: #e8f0fe;
+  color: #1a73e8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  overflow: hidden;
+}
+
+.react-device-header-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.react-device-state {
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #5f6368;
+  text-align: center;
+}
+
+.react-device-state svg {
+  width: 44px;
+  height: 44px;
+  color: #9aa0a6;
+}
+
+.react-device-state h3 {
+  margin: 4px 0 0;
+  color: #202124;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+}
+
+.react-device-state p {
+  margin: 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.react-device-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.react-device-summary-card {
+  min-height: 112px;
+  padding: 20px 24px;
+  border: 1px solid #dadce0;
+  border-radius: 12px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.react-device-summary-card span {
+  display: block;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.react-device-summary-card strong {
+  display: block;
+  margin-top: 12px;
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 600;
+}
+
+.react-device-summary-card.theme-blue {
+  background: #f0f4f9;
+  border-color: #d2e3fc;
+}
+
+.react-device-summary-card.theme-blue strong {
+  color: #1a73e8;
+}
+
+.react-device-summary-card.theme-green {
+  background: #e6f4ea;
+  border-color: #ceead6;
+}
+
+.react-device-summary-card.theme-green strong {
+  color: #137333;
+}
+
+.react-device-summary-card.theme-red {
+  background: #fce8e6;
+  border-color: #fad2cf;
+}
+
+.react-device-summary-card.theme-red strong {
+  color: #c5221f;
+}
+
+.react-device-summary-card.theme-orange {
+  background: #fef7e0;
+  border-color: #fce8b2;
+}
+
+.react-device-summary-card.theme-orange strong {
+  color: #b06000;
+}
+
+.react-device-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.react-device-card {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.react-device-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.react-device-card-header span {
+  display: block;
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.react-device-card-header strong {
+  display: block;
+  margin-top: 4px;
+  color: #202124;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.react-device-meta,
+.react-device-detail-grid {
+  margin: 16px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.react-device-detail-grid {
+  margin: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.react-device-info-item {
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid #f1f3f4;
+  border-radius: 8px;
+  background: #f8f9fa;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.react-device-info-item dt {
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.react-device-info-item dd {
+  margin: 6px 0 0;
+  color: #202124;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.react-device-full-field {
+  grid-column: 1 / -1;
+}
+
+.react-device-card-actions,
+.react-device-actions {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.react-device-card-actions .ant-btn,
+.react-device-actions .ant-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.react-device-card-actions .ant-btn svg,
+.react-device-actions .ant-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.react-device-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.react-device-section {
+  padding-bottom: 12px;
+}
+
+.react-device-section-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f1f3f4;
+  text-align: left;
+}
+
+.react-device-section-header h2 {
+  margin: 0;
+  color: #202124;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+.react-device-form-grid,
+.react-device-switch-grid,
+.react-device-status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 24px;
+}
+
+.react-device-switch-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.react-device-status-grid {
+  grid-template-columns: minmax(0, 2fr) minmax(180px, 1fr) minmax(180px, 1fr);
+}
+
+.react-device-form .ant-form-item {
+  margin-bottom: 12px;
+}
+
+.react-device-form .ant-picker,
+.react-device-form .ant-input,
+.react-device-form .ant-input-affix-wrapper,
+.react-device-form .ant-input-number,
+.react-device-form .ant-select-selector,
+.react-device-form .ant-upload-wrapper {
+  width: 100%;
+}
+
+.react-device-address-field {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 16px;
+}
+
+.react-device-bottom-actions {
+  padding: 18px 24px 0;
+  border-top: 1px solid #dadce0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.react-device-overview {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 1.4fr);
+  align-items: center;
+  gap: 24px;
+}
+
+.react-device-main {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  text-align: left;
+}
+
+.react-device-avatar {
+  width: 92px;
+  height: 92px;
+}
+
+.react-device-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.react-device-avatar svg {
+  width: 42px;
+  height: 42px;
+}
+
+.react-device-main h2 {
+  margin: 10px 0 4px;
+  color: #202124;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.react-device-main p {
+  margin: 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 20px;
+  word-break: break-all;
+}
+
+.react-device-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.react-device-capability-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.react-device-capability-card {
+  min-height: 72px;
+  padding: 16px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #f8f9fa;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.react-device-capability-card span {
+  min-width: 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.react-device-capability-card.active {
+  border-color: #ceead6;
+  background: #e6f4ea;
+}
+
+.react-device-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  border: 1px solid #dadce0;
+  object-fit: cover;
+}
+
+.react-device-map-picker {
+  height: min(68vh, 560px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.react-device-map-toolbar {
+  height: 56px;
+  padding-bottom: 16px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex: none;
+}
+
+.react-device-map-toolbar > div {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #202124;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.react-device-map-toolbar svg {
+  width: 20px;
+  height: 20px;
+  color: #13b996;
+}
+
+.react-device-map-box {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.react-device-map-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.react-device-map-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.react-device-map-modal .ant-modal-content {
+  overflow: hidden;
+}
+
+html[data-theme="dark"] .react-device-header,
+html[data-theme="dark"] .react-device-section,
+html[data-theme="dark"] .react-device-state,
+html[data-theme="dark"] .react-device-panel,
+html[data-theme="dark"] .react-device-card {
+  border-color: #30363d;
+  background: #161b22;
+}
+
+html[data-theme="dark"] .react-device-header-main h1,
+html[data-theme="dark"] .react-device-section-header h2,
+html[data-theme="dark"] .react-device-state h3,
+html[data-theme="dark"] .react-device-card-header strong,
+html[data-theme="dark"] .react-device-info-item dd,
+html[data-theme="dark"] .react-device-main h2 {
+  color: #f3f4f6;
+}
+
+html[data-theme="dark"] .react-device-header-main p,
+html[data-theme="dark"] .react-device-state,
+html[data-theme="dark"] .react-device-state p,
+html[data-theme="dark"] .react-device-card-header span,
+html[data-theme="dark"] .react-device-info-item dt,
+html[data-theme="dark"] .react-device-main p,
+html[data-theme="dark"] .react-device-capability-card span {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-device-header-icon,
+html[data-theme="dark"] .react-device-avatar {
+  background: rgba(56, 139, 253, 0.14);
+  color: #58a6ff;
+}
+
+html[data-theme="dark"] .react-device-summary-card,
+html[data-theme="dark"] .react-device-info-item,
+html[data-theme="dark"] .react-device-capability-card {
+  border-color: #30363d;
+  background: #0d1117;
+}
+
+html[data-theme="dark"] .react-device-summary-card span {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-device-summary-card.theme-blue {
+  background: rgba(56, 139, 253, 0.12);
+  border-color: rgba(56, 139, 253, 0.24);
+}
+
+html[data-theme="dark"] .react-device-summary-card.theme-blue strong {
+  color: #58a6ff;
+}
+
+html[data-theme="dark"] .react-device-summary-card.theme-green {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.24);
+}
+
+html[data-theme="dark"] .react-device-summary-card.theme-green strong {
+  color: #34d399;
+}
+
+html[data-theme="dark"] .react-device-summary-card.theme-red {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.24);
+}
+
+html[data-theme="dark"] .react-device-summary-card.theme-red strong {
+  color: #f87171;
+}
+
+html[data-theme="dark"] .react-device-summary-card.theme-orange {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.24);
+}
+
+html[data-theme="dark"] .react-device-summary-card.theme-orange strong {
+  color: #fbbf24;
+}
+
+html[data-theme="dark"] .react-device-card-header,
+html[data-theme="dark"] .react-device-section-header {
+  border-bottom-color: #30363d;
+}
+
+html[data-theme="dark"] .react-device-form .ant-form-item-label > label {
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .react-device-bottom-actions {
+  border-top-color: #30363d;
+}
+
+html[data-theme="dark"] .react-device-bottom-actions .ant-btn:not(.ant-btn-primary),
+html[data-theme="dark"] .react-device-actions .ant-btn:not(.ant-btn-primary) {
+  border-color: #30363d;
+  background: #161b22;
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .react-device-capability-card.active {
+  border-color: rgba(16, 185, 129, 0.24);
+  background: rgba(16, 185, 129, 0.12);
+}
+
+html[data-theme="dark"] .react-device-map-modal .ant-modal-content {
+  border: 1px solid #30363d;
+  background: #161b22;
+}
+
+html[data-theme="dark"] .react-device-map-toolbar > div {
+  color: #f3f4f6;
+}
+
+html[data-theme="dark"] .react-device-map-box,
+html[data-theme="dark"] .react-device-image {
+  border-color: #30363d;
+  background: #0d1117;
+}
+
+html[data-theme="dark"] .react-device-map-loading {
+  background: rgba(17, 24, 39, 0.84);
+  color: #d1d5db;
+}
+
+@media (max-width: 1280px) {
+  .react-device-summary-grid,
+  .react-device-grid,
+  .react-device-form-grid,
+  .react-device-switch-grid,
+  .react-device-status-grid,
+  .react-device-overview,
+  .react-device-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .react-device-overview-grid,
+  .react-device-capability-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 960px) {
+  .react-device-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .react-device-header-side {
+    align-self: flex-end;
+  }
+
+  .react-device-summary-grid,
+  .react-device-grid,
+  .react-device-meta,
+  .react-device-form-grid,
+  .react-device-switch-grid,
+  .react-device-status-grid,
+  .react-device-overview,
+  .react-device-overview-grid,
+  .react-device-detail-grid,
+  .react-device-capability-grid,
+  .react-device-address-field {
+    grid-template-columns: 1fr;
+  }
+}

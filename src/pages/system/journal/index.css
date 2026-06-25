@@ -1,0 +1,308 @@
+.react-journal-page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.react-journal-header,
+.react-journal-section,
+.react-journal-summary-card {
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.react-journal-header,
+.react-journal-section {
+  padding: 24px 32px;
+}
+
+.react-journal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.react-journal-header-main {
+  min-width: 0;
+  text-align: left;
+}
+
+.react-journal-header-main h1 {
+  margin: 0;
+  color: #202124;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+}
+
+.react-journal-header-main p {
+  margin: 4px 0 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.react-journal-header-side {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.react-journal-header-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: #e8f0fe;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.react-journal-header-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.react-journal-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.react-journal-summary-card {
+  min-height: 112px;
+  padding: 20px 24px;
+  text-align: left;
+}
+
+.react-journal-summary-card span {
+  display: block;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.react-journal-summary-card strong {
+  display: block;
+  margin-top: 12px;
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 600;
+}
+
+.react-journal-summary-card.theme-blue {
+  border-color: #d2e3fc;
+  background: #f0f4f9;
+}
+
+.react-journal-summary-card.theme-blue strong {
+  color: #1a73e8;
+}
+
+.react-journal-summary-card.theme-orange {
+  border-color: #fce8b2;
+  background: #fef7e0;
+}
+
+.react-journal-summary-card.theme-orange strong {
+  color: #b06000;
+}
+
+.react-journal-summary-card.theme-green {
+  border-color: #ceead6;
+  background: #e6f4ea;
+}
+
+.react-journal-summary-card.theme-green strong {
+  color: #137333;
+}
+
+.react-journal-state {
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #5f6368;
+  text-align: center;
+}
+
+.react-journal-state > svg {
+  width: 44px;
+  height: 44px;
+  color: #9aa0a6;
+}
+
+.react-journal-state h3 {
+  margin: 4px 0 0;
+  color: #202124;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+}
+
+.react-journal-state p {
+  margin: 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.react-journal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.react-journal-card {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.react-journal-card-header {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f1f3f4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.react-journal-card-header span {
+  display: block;
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.react-journal-card-header strong {
+  display: block;
+  margin-top: 4px;
+  color: #202124;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.react-journal-meta {
+  margin: 16px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.react-journal-meta > div {
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid #f1f3f4;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+.react-journal-meta dt {
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.react-journal-meta dd {
+  margin: 6px 0 0;
+  color: #202124;
+  font-size: 14px;
+  line-height: 22px;
+  word-break: break-all;
+}
+
+.react-journal-pagination {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+html[data-theme="dark"] .react-journal-page {
+  background: #111827;
+}
+
+html[data-theme="dark"] .react-journal-header,
+html[data-theme="dark"] .react-journal-section,
+html[data-theme="dark"] .react-journal-card,
+html[data-theme="dark"] .react-journal-summary-card {
+  border-color: #30363d;
+  background: #161b22;
+}
+
+html[data-theme="dark"] .react-journal-header-main h1,
+html[data-theme="dark"] .react-journal-state h3,
+html[data-theme="dark"] .react-journal-card-header strong,
+html[data-theme="dark"] .react-journal-meta dd {
+  color: #f3f4f6;
+}
+
+html[data-theme="dark"] .react-journal-header-main p,
+html[data-theme="dark"] .react-journal-summary-card span,
+html[data-theme="dark"] .react-journal-state p,
+html[data-theme="dark"] .react-journal-card-header span,
+html[data-theme="dark"] .react-journal-meta dt {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-journal-header-icon {
+  background: rgba(56, 139, 253, 0.14);
+}
+
+html[data-theme="dark"] .react-journal-card-header {
+  border-bottom-color: #30363d;
+}
+
+html[data-theme="dark"] .react-journal-meta > div {
+  border-color: #30363d;
+  background: #0d1117;
+}
+
+html[data-theme="dark"] .react-journal-summary-card.theme-blue strong {
+  color: #58a6ff;
+}
+
+html[data-theme="dark"] .react-journal-summary-card.theme-orange strong {
+  color: #fbbf24;
+}
+
+html[data-theme="dark"] .react-journal-summary-card.theme-green strong {
+  color: #34d399;
+}
+
+@media (max-width: 1280px) {
+  .react-journal-summary-grid,
+  .react-journal-grid,
+  .react-journal-meta {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 960px) {
+  .react-journal-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .react-journal-header-side {
+    align-self: flex-end;
+  }
+}

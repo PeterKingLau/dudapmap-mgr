@@ -1,4 +1,4 @@
-import { get, getImageUrl, post } from "./request";
+import { get, getImageUrl, post, type AppRequestConfig } from "./request";
 import type { AxiosRequestConfig } from "axios";
 
 type DevicePayload = Record<
@@ -15,8 +15,8 @@ const DEVICE_API = {
   upload: "fileupload",
 };
 
-export function fetchDevices() {
-  return get(DEVICE_API.findAll);
+export function fetchDevices(config?: AppRequestConfig) {
+  return get(DEVICE_API.findAll, config);
 }
 
 export function addDevice(params: DevicePayload) {

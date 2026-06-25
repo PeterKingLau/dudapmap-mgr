@@ -1,0 +1,549 @@
+.react-map-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: #f5f7fa;
+}
+
+.react-map-canvas-page {
+  width: 100%;
+  height: 100%;
+}
+
+.react-map-canvas-page .anchorBL {
+  left: 16px !important;
+  bottom: 16px !important;
+}
+
+.react-map-toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  min-height: 92px;
+  padding: 18px 24px;
+  border: 1px solid rgba(218, 220, 224, 0.82);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 12px 32px rgba(31, 45, 61, 0.12);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+  box-sizing: border-box;
+}
+
+.react-map-toolbar-main,
+.react-map-toolbar-title,
+.react-map-toolbar-actions {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.react-map-toolbar-main {
+  flex: 1 1 auto;
+}
+
+.react-map-toolbar-main,
+.react-map-toolbar-title {
+  gap: 18px;
+}
+
+.react-map-toolbar-actions {
+  flex: none;
+  gap: 14px;
+}
+
+.react-map-title-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #e8f0fe;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.react-map-title-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.react-map-toolbar-title h1 {
+  margin: 0;
+  color: #202124;
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 600;
+}
+
+.react-map-toolbar-title p {
+  margin: 3px 0 0;
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.react-map-online-card {
+  min-width: 168px;
+  padding: 12px 16px;
+  border: 1px solid #d2e3fc;
+  border-radius: 8px;
+  background: #f8fbff;
+  text-align: left;
+}
+
+.react-map-online-card span {
+  display: block;
+  color: #5f6368;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.react-map-online-card strong {
+  margin-top: 2px;
+  color: #1a73e8;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.react-map-toolbar-actions .ant-btn {
+  min-width: 104px;
+}
+
+.react-map-online-card em {
+  margin-left: 4px;
+  color: #5f6368;
+  font-style: normal;
+  font-size: 12px;
+}
+
+.react-map-query-panel,
+.react-map-legend {
+  position: absolute;
+  z-index: 10;
+  border: 1px solid rgba(218, 220, 224, 0.82);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 12px 32px rgba(31, 45, 61, 0.12);
+  backdrop-filter: blur(14px);
+}
+
+.react-map-query-panel {
+  top: 104px;
+  left: 20px;
+  width: 320px;
+  padding: 18px 18px 6px;
+}
+
+.react-map-query-panel .ant-picker,
+.react-map-query-panel .ant-select {
+  width: 100%;
+}
+
+.react-map-query-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.react-map-legend {
+  right: 20px;
+  bottom: 20px;
+  padding: 10px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.react-map-legend > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #5f6368;
+  font-size: 13px;
+}
+
+.react-map-legend strong {
+  color: #202124;
+}
+
+.react-map-legend svg {
+  width: 16px;
+  height: 16px;
+  color: #1a73e8;
+}
+
+.react-map-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #13b996;
+  box-shadow: 0 0 0 4px rgba(19, 185, 150, 0.12);
+}
+
+.react-map-side-panel {
+  position: absolute;
+  top: 104px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 12;
+  width: min(430px, calc(100vw - 48px));
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 18px 48px rgba(31, 45, 61, 0.18);
+  backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.react-map-panel-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid #f1f3f4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.react-map-panel-header h2 {
+  margin: 0;
+  color: #202124;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 600;
+}
+
+.react-map-panel-header p {
+  margin: 3px 0 0;
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.react-map-panel-state {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #5f6368;
+  text-align: center;
+}
+
+.react-map-panel-state svg {
+  width: 42px;
+  height: 42px;
+  color: #9aa0a6;
+}
+
+.react-map-panel-state h3 {
+  margin: 0;
+  color: #202124;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+.react-map-panel-state p,
+.react-map-panel-state span {
+  margin: 0;
+  color: #5f6368;
+  font-size: 13px;
+}
+
+.react-map-panel-list {
+  flex: 1;
+  min-height: 0;
+  padding: 16px;
+  overflow: auto;
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.react-map-task-card,
+.react-map-people-card {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.react-map-task-card:hover,
+.react-map-people-card:hover {
+  border-color: #d2e3fc;
+  background: #f8fbff;
+}
+
+.react-map-task-card-header {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f3f4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.react-map-task-card-header span,
+.react-map-people-main span,
+.react-map-info-list dt {
+  display: block;
+  color: #5f6368;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.react-map-task-card-header strong,
+.react-map-people-main strong,
+.react-map-info-list dd {
+  display: block;
+  margin-top: 4px;
+  color: #202124;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.react-map-task-actions {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.react-map-delete-button {
+  color: #dc2626;
+}
+
+.react-map-delete-button:hover {
+  color: #b91c1c !important;
+  background: #fee2e2 !important;
+}
+
+.react-map-info-list {
+  margin: 12px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.react-map-info-list > div {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid #f1f3f4;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+.react-map-info-list .full-field {
+  grid-column: 1 / -1;
+}
+
+.react-map-people-card {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18px;
+  gap: 10px;
+  align-items: center;
+}
+
+.react-map-people-card p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 20px;
+  word-break: break-all;
+}
+
+.react-map-people-card svg {
+  width: 18px;
+  height: 18px;
+  color: #1a73e8;
+}
+
+.react-map-label {
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(31, 45, 61, 0.14) !important;
+  color: #202124 !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  padding: 4px 9px !important;
+  white-space: nowrap !important;
+}
+
+.react-map-rider-label {
+  border: 1px solid rgba(19, 185, 150, 0.18) !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  box-shadow: 0 8px 20px rgba(31, 45, 61, 0.15) !important;
+  color: #202124 !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  padding: 6px 10px !important;
+  white-space: nowrap !important;
+}
+
+.react-map-point-summary {
+  padding: 16px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #f8fafd;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+}
+
+.react-map-point-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: #e8f0fe;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.react-map-point-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.react-map-point-summary strong {
+  display: block;
+  color: #202124;
+  font-size: 16px;
+}
+
+.react-map-point-summary span {
+  display: block;
+  margin-top: 4px;
+  color: #5f6368;
+  font-size: 13px;
+}
+
+.react-map-point-info {
+  margin: 16px 0 0;
+  border: 1px solid #f1f3f4;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.react-map-point-info > div {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.react-map-point-info > div:last-child {
+  border-bottom: 0;
+}
+
+html[data-theme="dark"] .react-map-page {
+  background: #111827;
+}
+
+html[data-theme="dark"] .react-map-toolbar,
+html[data-theme="dark"] .react-map-query-panel,
+html[data-theme="dark"] .react-map-legend,
+html[data-theme="dark"] .react-map-side-panel {
+  border-color: #30363d;
+  background: rgba(22, 27, 34, 0.94);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+}
+
+html[data-theme="dark"] .react-map-toolbar-title h1,
+html[data-theme="dark"] .react-map-panel-header h2,
+html[data-theme="dark"] .react-map-panel-state h3,
+html[data-theme="dark"] .react-map-task-card-header strong,
+html[data-theme="dark"] .react-map-people-main strong,
+html[data-theme="dark"] .react-map-info-list dd,
+html[data-theme="dark"] .react-map-legend strong,
+html[data-theme="dark"] .react-map-point-summary strong {
+  color: #f3f4f6;
+}
+
+html[data-theme="dark"] .react-map-toolbar-title p,
+html[data-theme="dark"] .react-map-online-card span,
+html[data-theme="dark"] .react-map-online-card em,
+html[data-theme="dark"] .react-map-panel-header p,
+html[data-theme="dark"] .react-map-panel-state p,
+html[data-theme="dark"] .react-map-panel-state span,
+html[data-theme="dark"] .react-map-task-card-header span,
+html[data-theme="dark"] .react-map-people-main span,
+html[data-theme="dark"] .react-map-people-card p,
+html[data-theme="dark"] .react-map-info-list dt,
+html[data-theme="dark"] .react-map-legend > div,
+html[data-theme="dark"] .react-map-point-summary span {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-map-title-icon,
+html[data-theme="dark"] .react-map-point-icon {
+  background: rgba(56, 139, 253, 0.14);
+}
+
+html[data-theme="dark"] .react-map-online-card,
+html[data-theme="dark"] .react-map-task-card,
+html[data-theme="dark"] .react-map-people-card,
+html[data-theme="dark"] .react-map-info-list > div,
+html[data-theme="dark"] .react-map-point-summary,
+html[data-theme="dark"] .react-map-point-info {
+  border-color: #30363d;
+  background: #0d1117;
+}
+
+html[data-theme="dark"] .react-map-task-card-header,
+html[data-theme="dark"] .react-map-panel-header,
+html[data-theme="dark"] .react-map-point-info > div {
+  border-bottom-color: #30363d;
+}
+
+html[data-theme="dark"] .react-map-label,
+html[data-theme="dark"] .react-map-rider-label {
+  border-color: #30363d !important;
+  background: #161b22 !important;
+  color: #f3f4f6 !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.34) !important;
+}
+
+@media (max-width: 1180px) {
+  .react-map-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .react-map-toolbar-actions {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .react-map-query-panel {
+    width: min(320px, calc(100vw - 40px));
+  }
+}

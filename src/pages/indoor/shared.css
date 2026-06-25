@@ -1,0 +1,505 @@
+.react-indoor-page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.react-indoor-header,
+.react-indoor-section {
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.react-indoor-header {
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.react-indoor-section {
+  padding: 24px 32px 28px;
+}
+
+.react-indoor-header-main {
+  min-width: 0;
+  text-align: left;
+}
+
+.react-indoor-header-main h1 {
+  margin: 0;
+  color: #202124;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+}
+
+.react-indoor-header-main p {
+  margin: 4px 0 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.react-indoor-header-side {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.react-indoor-header-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: #e8f0fe;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-indoor-header-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.react-indoor-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.react-indoor-summary-card {
+  min-width: 0;
+  min-height: 112px;
+  padding: 20px 24px;
+  border: 1px solid #dadce0;
+  border-radius: 12px;
+  background: #ffffff;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.react-indoor-summary-card span,
+.react-indoor-record-header span,
+.react-indoor-info-grid dt {
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.react-indoor-summary-card strong {
+  display: block;
+  margin-top: 12px;
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.react-indoor-summary-card.theme-blue {
+  border-color: #d2e3fc;
+  background: #f0f4f9;
+}
+
+.react-indoor-summary-card.theme-blue strong {
+  color: #1a73e8;
+}
+
+.react-indoor-summary-card.theme-green {
+  border-color: #ceead6;
+  background: #e6f4ea;
+}
+
+.react-indoor-summary-card.theme-green strong {
+  color: #137333;
+}
+
+.react-indoor-summary-card.theme-orange {
+  border-color: #fce8b2;
+  background: #fef7e0;
+}
+
+.react-indoor-summary-card.theme-orange strong {
+  color: #b06000;
+}
+
+.react-indoor-state {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #5f6368;
+  text-align: center;
+}
+
+.react-indoor-state svg {
+  width: 44px;
+  height: 44px;
+  color: #9aa0a6;
+}
+
+.react-indoor-state h3 {
+  margin: 0;
+  color: #202124;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+}
+
+.react-indoor-state p,
+.react-indoor-state span {
+  margin: 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.react-indoor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.react-indoor-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 20px;
+}
+
+.react-indoor-card {
+  min-width: 0;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.react-indoor-card:hover {
+  border-color: #d2e3fc;
+  background: #f8f9fa;
+}
+
+.react-indoor-detail-card {
+  position: relative;
+  min-width: 0;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 18px;
+}
+
+.react-indoor-delete-button {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  border-color: transparent;
+  background: rgba(255, 255, 255, 0.92);
+  color: #d93025;
+  box-shadow: 0 6px 16px rgba(60, 64, 67, 0.12);
+}
+
+.react-indoor-delete-button:hover,
+.react-indoor-delete-button:focus-visible {
+  border-color: #f4b4ae !important;
+  background: #fce8e6 !important;
+  color: #c5221f !important;
+}
+
+.react-indoor-delete-button svg {
+  width: 15px;
+  height: 15px;
+}
+
+.react-indoor-image {
+  height: 190px;
+  background: #f1f3f4;
+}
+
+.react-indoor-detail-card .react-indoor-image {
+  height: 150px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.react-indoor-image-button {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.react-indoor-image img,
+.react-indoor-image-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.react-indoor-image-fallback {
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #9aa0a6;
+  background: #f1f3f4;
+  font-size: 13px;
+}
+
+.react-indoor-image-fallback svg {
+  width: 30px;
+  height: 30px;
+}
+
+.react-indoor-content {
+  padding: 18px;
+  text-align: left;
+}
+
+.react-indoor-record-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.react-indoor-record-header svg {
+  width: 18px;
+  height: 18px;
+  color: #1a73e8;
+}
+
+.react-indoor-content h2,
+.react-indoor-card-title h2 {
+  margin: 8px 0 16px;
+  color: #202124;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.react-indoor-card-title span {
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.react-indoor-info-grid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
+}
+
+.react-indoor-card .react-indoor-info-grid {
+  grid-template-columns: 1fr;
+}
+
+.react-indoor-info-grid > div {
+  min-width: 0;
+}
+
+.react-indoor-info-grid .full-field {
+  grid-column: 1 / -1;
+}
+
+.react-indoor-info-grid dd {
+  margin: 2px 0 0;
+  color: #202124;
+  font-size: 14px;
+  line-height: 22px;
+  word-break: break-all;
+}
+
+.react-indoor-pagination {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.react-indoor-preview-panel {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 16px;
+}
+
+.react-indoor-preview-image {
+  min-height: 360px;
+  border-radius: 8px;
+  background: #f1f3f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.react-indoor-preview-image img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+.react-indoor-preview-nav {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #dadce0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #5f6368;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.react-indoor-preview-nav:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.react-indoor-preview-nav svg {
+  width: 24px;
+  height: 24px;
+}
+
+.react-indoor-preview-modal .ant-modal-content {
+  border-radius: 8px;
+}
+
+html[data-theme="dark"] .react-indoor-page {
+  background: #111827;
+}
+
+html[data-theme="dark"] .react-indoor-header,
+html[data-theme="dark"] .react-indoor-section,
+html[data-theme="dark"] .react-indoor-card {
+  border-color: #30363d;
+  background: #161b22;
+}
+
+html[data-theme="dark"] .react-indoor-summary-card {
+  border-color: #30363d;
+  background: #161b22;
+}
+
+html[data-theme="dark"] .react-indoor-card:hover {
+  border-color: #3b82f6;
+  background: #0d1117;
+}
+
+html[data-theme="dark"] .react-indoor-header-main h1,
+html[data-theme="dark"] .react-indoor-state h3,
+html[data-theme="dark"] .react-indoor-content h2,
+html[data-theme="dark"] .react-indoor-card-title h2,
+html[data-theme="dark"] .react-indoor-info-grid dd {
+  color: #f3f4f6;
+}
+
+html[data-theme="dark"] .react-indoor-header-main p,
+html[data-theme="dark"] .react-indoor-summary-card span,
+html[data-theme="dark"] .react-indoor-record-header span,
+html[data-theme="dark"] .react-indoor-card-title span,
+html[data-theme="dark"] .react-indoor-info-grid dt,
+html[data-theme="dark"] .react-indoor-state p,
+html[data-theme="dark"] .react-indoor-state span {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-indoor-summary-card.theme-blue {
+  border-color: rgba(88, 166, 255, 0.32);
+  background: rgba(56, 139, 253, 0.12);
+}
+
+html[data-theme="dark"] .react-indoor-summary-card.theme-blue strong {
+  color: #58a6ff;
+}
+
+html[data-theme="dark"] .react-indoor-summary-card.theme-green {
+  border-color: rgba(63, 185, 80, 0.32);
+  background: rgba(46, 160, 67, 0.12);
+}
+
+html[data-theme="dark"] .react-indoor-summary-card.theme-green strong {
+  color: #56d364;
+}
+
+html[data-theme="dark"] .react-indoor-summary-card.theme-orange {
+  border-color: rgba(210, 153, 34, 0.32);
+  background: rgba(187, 128, 9, 0.14);
+}
+
+html[data-theme="dark"] .react-indoor-summary-card.theme-orange strong {
+  color: #e3b341;
+}
+
+html[data-theme="dark"] .react-indoor-header-icon {
+  background: rgba(56, 139, 253, 0.14);
+}
+
+html[data-theme="dark"] .react-indoor-image,
+html[data-theme="dark"] .react-indoor-image-fallback,
+html[data-theme="dark"] .react-indoor-preview-image {
+  background: #0d1117;
+  color: #6b7280;
+}
+
+html[data-theme="dark"] .react-indoor-preview-nav {
+  border-color: #30363d;
+  background: #21262d;
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .react-indoor-delete-button {
+  border-color: #30363d;
+  background: #1f2937;
+  color: #f87171;
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .react-indoor-delete-button:hover,
+html[data-theme="dark"] .react-indoor-delete-button:focus-visible {
+  border-color: rgba(248, 113, 113, 0.35) !important;
+  background: rgba(127, 29, 29, 0.24) !important;
+  color: #fecaca !important;
+}
+
+html[data-theme="dark"] .react-indoor-preview-modal .ant-modal-content {
+  background: #161b22;
+}
+
+@media (max-width: 1180px) {
+  .react-indoor-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .react-indoor-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}

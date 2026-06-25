@@ -1,0 +1,224 @@
+.react-not-found-page {
+  width: 100vw;
+  height: 100vh;
+  min-height: 0;
+  padding: 36px 48px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f3f4;
+}
+
+.react-not-found-panel {
+  width: min(1120px, 100%);
+  height: 100%;
+  min-height: 0;
+  max-height: 100%;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 72px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.react-not-found-illustration {
+  height: min(420px, 72%);
+  min-height: 0;
+  border-radius: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.react-not-found-illustration img {
+  width: 100%;
+  height: 100%;
+  max-height: 340px;
+  object-fit: contain;
+}
+
+.react-not-found-fallback {
+  width: min(360px, 100%);
+  aspect-ratio: 1.2;
+  border: 1px solid #d2e3fc;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 28% 24%, rgba(19, 185, 150, 0.16), transparent 30%),
+    linear-gradient(135deg, #f8fbff 0%, #eef5ff 100%);
+  color: #165dff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.react-not-found-fallback svg {
+  width: 64px;
+  height: 64px;
+  opacity: 0.9;
+}
+
+.react-not-found-fallback span {
+  color: #1d2129;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 800;
+  background: linear-gradient(90deg, #165dff, #14c9c9);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.react-not-found-content {
+  min-width: 0;
+  padding-right: 0;
+  text-align: left;
+}
+
+.react-not-found-status {
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.react-not-found-content h1 {
+  margin: 24px 0 16px;
+  color: #1d2129;
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.react-not-found-content p {
+  max-width: 480px;
+  margin: 0;
+  color: #4e5969;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.react-not-found-path {
+  margin-top: 32px;
+  padding: 16px 20px;
+  border: 1px solid rgba(229, 230, 235, 0.5);
+  border-radius: 12px;
+  background: #f7f8fa;
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.react-not-found-path span {
+  color: #86909c;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.react-not-found-path strong {
+  min-width: 0;
+  color: #1d2129;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.react-not-found-actions {
+  margin-top: 40px;
+  display: flex;
+  gap: 16px;
+}
+
+.react-not-found-actions .ant-btn {
+  padding: 0 24px;
+  border-radius: 999px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+html[data-theme="dark"] .react-not-found-page {
+  background: #111827;
+}
+
+html[data-theme="dark"] .react-not-found-panel {
+  background: transparent;
+}
+
+html[data-theme="dark"] .react-not-found-illustration {
+  background: transparent;
+}
+
+html[data-theme="dark"] .react-not-found-fallback {
+  border-color: #30363d;
+  background:
+    radial-gradient(circle at 28% 24%, rgba(19, 185, 150, 0.14), transparent 30%),
+    linear-gradient(135deg, #0d1117 0%, #111827 100%);
+}
+
+html[data-theme="dark"] .react-not-found-content h1,
+html[data-theme="dark"] .react-not-found-path strong {
+  color: #f3f4f6;
+}
+
+html[data-theme="dark"] .react-not-found-content p,
+html[data-theme="dark"] .react-not-found-path span {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-not-found-path {
+  border-color: #30363d;
+  background: #0d1117;
+}
+
+@media (max-width: 1180px) {
+  .react-not-found-panel {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(160px, 0.8fr) auto;
+    gap: 28px;
+  }
+
+  .react-not-found-content {
+    padding-right: 0;
+    text-align: center;
+  }
+
+  .react-not-found-content p {
+    margin: 0 auto;
+  }
+
+  .react-not-found-path {
+    text-align: left;
+  }
+
+  .react-not-found-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .react-not-found-page {
+    padding: 16px;
+  }
+
+  .react-not-found-content h1 {
+    font-size: 28px;
+  }
+
+  .react-not-found-actions,
+  .react-not-found-actions .ant-btn {
+    width: 100%;
+  }
+}

@@ -3,6 +3,7 @@ node_modules/
 /dist/
 .npm-cache/
 .pnpm-store/
+pnpm-lock.yaml
 npm-debug.log*
 vite-dev*.log
 yarn-debug.log*

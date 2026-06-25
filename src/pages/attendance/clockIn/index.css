@@ -1,0 +1,299 @@
+.react-clockin-page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.react-clockin-hero {
+  min-height: 120px;
+  padding: 24px 32px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.react-clockin-copy {
+  min-width: 0;
+  flex: 1;
+  text-align: left;
+}
+
+.react-clockin-copy h1 {
+  margin: 8px 0;
+  color: #202124;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+}
+
+.react-clockin-copy p {
+  margin: 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.react-clockin-hero-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: #e8f0fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.react-clockin-hero-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.react-clockin-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.react-clockin-card {
+  min-height: 120px;
+  padding: 20px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 16px;
+  color: #202124;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.react-clockin-card:hover {
+  background: #f8f9fa;
+  border-color: #d2e3fc;
+  transform: translateY(-1px);
+}
+
+.react-clockin-card:hover .react-clockin-arrow {
+  color: #13b996;
+}
+
+.react-clockin-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: #e8f0fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-clockin-card-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.react-clockin-card-info {
+  min-width: 0;
+}
+
+.react-clockin-card-info strong,
+.react-clockin-card-info small {
+  display: block;
+}
+
+.react-clockin-card-info strong {
+  color: #202124;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 500;
+}
+
+.react-clockin-card-info small {
+  margin-top: 4px;
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.react-clockin-arrow {
+  width: 20px;
+  height: 20px;
+  color: #9aa0a6;
+  transition: color 0.2s ease;
+}
+
+.react-query-form .ant-picker,
+.react-query-form .ant-select {
+  width: 100%;
+}
+
+.react-query-user {
+  min-height: 32px;
+  margin-top: 10px;
+  padding: 0 12px;
+  border: 1px solid rgba(19, 185, 150, 0.18);
+  border-radius: 8px;
+  background: rgba(19, 185, 150, 0.08);
+  color: #0f9f82;
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  line-height: 32px;
+}
+
+.react-query-actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.react-query-modal .ant-modal-content {
+  overflow: hidden;
+  padding: 0;
+}
+
+.react-query-modal .ant-modal-header {
+  margin: 0;
+  padding: 16px 20px;
+  border-bottom: 1px solid #dadce0;
+}
+
+.react-query-modal .ant-modal-body {
+  padding: 20px;
+}
+
+.react-query-modal .ant-modal-title {
+  color: #202124;
+  font-weight: 500;
+}
+
+html[data-theme="dark"] .react-clockin-hero,
+html[data-theme="dark"] .react-clockin-card {
+  border-color: #30363d;
+  background: #161b22;
+}
+
+html[data-theme="dark"] .react-clockin-copy h1,
+html[data-theme="dark"] .react-clockin-card-info strong {
+  color: #f3f4f6;
+}
+
+html[data-theme="dark"] .react-clockin-copy p,
+html[data-theme="dark"] .react-clockin-card-info small {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-clockin-hero-icon,
+html[data-theme="dark"] .react-clockin-card-icon {
+  background: rgba(56, 139, 253, 0.14);
+}
+
+html[data-theme="dark"] .react-clockin-card:hover {
+  border-color: #3b82f6;
+  background: #0d1117;
+}
+
+html[data-theme="dark"] .react-clockin-arrow {
+  color: #6b7280;
+}
+
+html[data-theme="dark"] .react-clockin-card:hover .react-clockin-arrow {
+  color: #5eead4;
+}
+
+html[data-theme="dark"] .react-query-modal .ant-modal-content {
+  border: 1px solid #30363d;
+  background: #161b22;
+  color: #f3f4f6;
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.42);
+}
+
+html[data-theme="dark"] .react-query-modal .ant-modal-header {
+  border-bottom-color: #30363d;
+  background: #161b22;
+}
+
+html[data-theme="dark"] .react-query-modal .ant-modal-body {
+  background: #161b22;
+}
+
+html[data-theme="dark"] .react-query-modal .ant-modal-title {
+  color: #f3f4f6;
+}
+
+html[data-theme="dark"] .react-query-modal .ant-modal-close {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .react-query-modal .ant-modal-close:hover {
+  color: #f3f4f6;
+  background: #21262d;
+}
+
+html[data-theme="dark"] .react-query-modal .ant-form-item-label > label {
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .react-query-modal .ant-picker,
+html[data-theme="dark"] .react-query-modal .ant-select-selector {
+  border-color: #30363d;
+  background: #0d1117;
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .react-query-modal .ant-picker:hover,
+html[data-theme="dark"] .react-query-modal .ant-select-selector:hover {
+  border-color: #3b82f6;
+  background: #111827;
+}
+
+html[data-theme="dark"] .react-query-modal .ant-picker-input > input,
+html[data-theme="dark"] .react-query-modal .ant-select-selection-item {
+  color: #e5e7eb;
+}
+
+html[data-theme="dark"] .react-query-modal .ant-picker-input > input::placeholder,
+html[data-theme="dark"] .react-query-modal .ant-select-selection-placeholder {
+  color: #6b7280;
+}
+
+html[data-theme="dark"] .react-query-user {
+  border-color: rgba(19, 185, 150, 0.26);
+  background: rgba(19, 185, 150, 0.12);
+  color: #5eead4;
+}
+
+html[data-theme="dark"] .react-query-actions .ant-btn:not(.ant-btn-primary) {
+  border-color: #30363d;
+  background: #21262d;
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .react-query-actions .ant-btn:not(.ant-btn-primary):hover {
+  border-color: #4b5563;
+  background: #30363d;
+  color: #f3f4f6;
+}
+
+@media (max-width: 1180px) {
+  .react-clockin-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -88,7 +88,7 @@ export function canAccessRoute(
     return true;
   }
 
-  if (meta.roles?.length && !meta.roles.includes(userInfo.userrole)) {
+  if (meta.roles?.length && !meta.roles.includes(userInfo.userrole || "")) {
     return false;
   }
 
@@ -100,3 +100,4 @@ export function canAccessRoute(
     ? hasAllPermissions(userInfo, meta.permissions)
     : hasAnyPermission(userInfo, meta.permissions);
 }
+

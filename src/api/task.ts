@@ -1,4 +1,4 @@
-import { get } from "./request";
+import { get, type AppRequestConfig } from "./request";
 
 type TaskId = string | number;
 
@@ -9,8 +9,8 @@ const TASK_API = {
   findAll: "hxdtask/findAll",
 };
 
-export function fetchTasks() {
-  return get(TASK_API.findAll);
+export function fetchTasks(config?: AppRequestConfig) {
+  return get(TASK_API.findAll, config);
 }
 
 export function deleteTaskById(id: TaskId) {
