@@ -66,15 +66,21 @@ function getSessionUserInfo() {
   }
 }
 
-function formatValue(value: unknown) {
-  return value === "" || value === null || value === undefined ? "-" : value;
+function formatValue(value: unknown): string | number {
+  if (value === "" || value === null || value === undefined) {
+    return "-";
+  }
+
+  return typeof value === "number" || typeof value === "string"
+    ? value
+    : String(value);
 }
 
-function formatRole(value?: string) {
+function formatRole(value?: string): string | number {
   return value === "1" ? "-" : formatValue(value);
 }
 
-function formatArea(value?: string) {
+function formatArea(value?: string): string | number {
   return value === "1" ? "-" : formatValue(value);
 }
 
@@ -105,9 +111,15 @@ export function UserMgrPage() {
     : "新增人员信息";
 
   const summaryItems = useMemo(() => {
-    const adminCount = userList.filter((item) => item.userrole === "管理员").length;
-    const peopleCount = userList.filter((item) => item.userrole === "人员").length;
-    const workerCount = userList.filter((item) => item.userrole === "小工").length;
+    const adminCount = userList.filter(
+      (item) => item.userrole === "管理员",
+    ).length;
+    const peopleCount = userList.filter(
+      (item) => item.userrole === "人员",
+    ).length;
+    const workerCount = userList.filter(
+      (item) => item.userrole === "小工",
+    ).length;
 
     return [
       { label: "当前人员", value: userList.length, theme: "blue" },
@@ -179,7 +191,9 @@ export function UserMgrPage() {
     fetchAllUsers()
       .then((res) => {
         const rows = getRows(res);
-        setUserList(type ? rows.filter((item) => item.userrole === type) : rows);
+        setUserList(
+          type ? rows.filter((item) => item.userrole === type) : rows,
+        );
       })
       .catch(() => {
         setUserList([]);
@@ -281,7 +295,10 @@ export function UserMgrPage() {
               allowClear
               options={[
                 { label: "全部", value: "" },
-                ...userTypeColumns.map((item) => ({ label: item, value: item })),
+                ...userTypeColumns.map((item) => ({
+                  label: item,
+                  value: item,
+                })),
               ]}
               placeholder="全部"
               value={userType || undefined}
@@ -290,7 +307,11 @@ export function UserMgrPage() {
           </Form.Item>
           <Form.Item label="操作">
             {canEditUser ? (
-              <Button icon={<Icon icon="ri:add-line" />} type="primary" onClick={openAddUser}>
+              <Button
+                icon={<Icon icon="ri:add-line" />}
+                type="primary"
+                onClick={openAddUser}
+              >
                 新增人员
               </Button>
             ) : (
@@ -317,7 +338,9 @@ export function UserMgrPage() {
                 onClick={() => openEditUser(item)}
               >
                 <div className="react-user-card-header">
-                  <div className="react-user-avatar">{getUserInitial(item)}</div>
+                  <div className="react-user-avatar">
+                    {getUserInitial(item)}
+                  </div>
                   <div className="react-user-main">
                     <strong>{formatValue(item.username)}</strong>
                     <span>{formatValue(item.userphone)}</span>
@@ -387,7 +410,10 @@ export function UserMgrPage() {
               <Form.Item label="人员角色">
                 <Select
                   disabled={!canEditUser}
-                  options={roleColumns.map((item) => ({ label: item, value: item }))}
+                  options={roleColumns.map((item) => ({
+                    label: item,
+                    value: item,
+                  }))}
                   placeholder="请选择人员角色"
                   value={userrole || undefined}
                   onChange={(value) => setUserrole(value || "")}

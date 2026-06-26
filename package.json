@@ -1,7 +1,7 @@
 {
-  "name": "electronic_fence",
-  "version": "1.0.0",
-  "description": "Huaxinda React management platform",
+  "name": "management-platform",
+  "version": "1.0.1",
+  "description": "React management platform",
   "author": "",
   "private": true,
   "scripts": {

@@ -29,7 +29,10 @@ interface BusinessResponseData extends PlainRecord {
   msg?: string;
 }
 
-export interface AppRequestConfig extends Omit<AxiosRequestConfig, "data" | "params"> {
+export interface AppRequestConfig extends Omit<
+  AxiosRequestConfig,
+  "data" | "params"
+> {
   cache?: boolean;
   cacheTtl?: number;
   checkBusinessCode?: boolean;

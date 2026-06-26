@@ -297,7 +297,7 @@ export function ClockTotalPage() {
   return (
     <div className="react-att-page">
       <AttendanceHeader
-        description="按人员、日期或月份查看考勤统计，并导出 CSV 报表。"
+        description="按人员、日期或月份查看考勤统计，并导出 Excel 报表。"
         icon={icon}
         title="打卡统计"
       />

@@ -1,6 +1,7 @@
 import { Button, Empty, Modal, Spin, Tag, message } from "antd";
 import { Icon } from "@iconify/react";
 import { useEffect, useRef } from "react";
+import { useExcelExport } from "../../hooks/useExcelExport";
 import "./shared.css";
 
 export type StatCard = {
@@ -142,41 +143,6 @@ export function getResponseArray<T>(data: unknown): T[] {
   return Array.isArray(data) ? (data as T[]) : [];
 }
 
-function escapeCsvCell(value: unknown) {
-  const text = String(value ?? "");
-
-  return `"${text.replace(/"/g, '""')}"`;
-}
-
-export function downloadCsv<T>(
-  fileName: string,
-  rows: T[],
-  columns: Array<CsvColumn<T>>,
-) {
-  const header = columns.map((item) => escapeCsvCell(item.title)).join(",");
-  const body = rows
-    .map((row) =>
-      columns
-        .map((item) =>
-          escapeCsvCell((row as Record<string, unknown>)[String(item.key)]),
-        )
-        .join(","),
-    )
-    .join("\n");
-  const blob = new Blob([`\ufeff${header}\n${body}`], {
-    type: "text/csv;charset=utf-8",
-  });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-
-  link.href = url;
-  link.download = fileName.endsWith(".csv") ? fileName : `${fileName}.csv`;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
-}
-
 export function ExportDialog<T>({
   columns,
   fileName,
@@ -185,6 +151,7 @@ export function ExportDialog<T>({
   rows,
 }: ExportDialogProps<T>) {
   const successTimerRef = useRef<number | null>(null);
+  const { exportExcel, exporting } = useExcelExport();
 
   useEffect(
     () => () => {
@@ -195,12 +162,20 @@ export function ExportDialog<T>({
     [],
   );
 
-  function confirmExport() {
-    downloadCsv(fileName, rows, columns);
-    onOpenChange(false);
-    successTimerRef.current = window.setTimeout(() => {
-      message.success(`${fileName}导出成功`);
-    }, 300);
+  async function confirmExport() {
+    try {
+      await exportExcel({
+        columns,
+        data: rows,
+        fileName,
+      });
+      onOpenChange(false);
+      successTimerRef.current = window.setTimeout(() => {
+        message.success(`${fileName}导出成功`);
+      }, 300);
+    } catch {
+      message.error(`${fileName}导出失败`);
+    }
   }
 
   return (
@@ -208,7 +183,7 @@ export function ExportDialog<T>({
       className="react-att-modal"
       footer={null}
       open={open}
-      title="导出 CSV"
+      title="导出 Excel"
       width={460}
       onCancel={() => onOpenChange(false)}
     >
@@ -223,7 +198,7 @@ export function ExportDialog<T>({
         <Tag color="blue">{rows.length} 条记录</Tag>
         <div className="react-att-actions">
           <Button onClick={() => onOpenChange(false)}>取消</Button>
-          <Button type="primary" onClick={confirmExport}>
+          <Button loading={exporting} type="primary" onClick={confirmExport}>
             导出
           </Button>
         </div>

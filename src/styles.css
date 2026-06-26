@@ -1443,3 +1443,15 @@ html[data-theme="dark"] .react-user-search-modal .ant-picker-input > input::plac
 html[data-theme="dark"] .react-unclocked-modal .ant-picker-input > input::placeholder {
   color: #6b7280 !important;
 }
+
+.app-route-loading {
+  min-height: 100vh;
+  background: #f1f3f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html[data-theme="dark"] .app-route-loading {
+  background: #111827;
+}

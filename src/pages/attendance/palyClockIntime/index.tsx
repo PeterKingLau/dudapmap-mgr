@@ -110,7 +110,7 @@ export function PalyClockIntimePage() {
             action={
               <Button type="primary" onClick={openExport}>
                 <Icon icon="ri:file-excel-2-line" />
-                导出 CSV
+                导出 Excel
               </Button>
             }
             title="时长记录"

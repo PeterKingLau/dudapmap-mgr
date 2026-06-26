@@ -88,7 +88,7 @@ export function ClockInMonthPage() {
   return (
     <div className="react-att-page">
       <AttendanceHeader
-        description="查看指定月份的打卡统计明细，并支持导出 CSV 报表。"
+        description="查看指定月份的打卡统计明细，并支持导出 Excel 报表。"
         extra={<Tag color="blue">{records.length} 条记录</Tag>}
         icon={icon}
         title={`${month || "-"} 打卡信息`}
@@ -108,7 +108,7 @@ export function ClockInMonthPage() {
             action={
               <Button type="primary" onClick={openExport}>
                 <Icon icon="ri:file-excel-2-line" />
-                导出 CSV
+                导出 Excel
               </Button>
             }
             title="打卡记录"
