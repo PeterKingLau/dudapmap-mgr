@@ -1,4 +1,5 @@
-import { Pagination, Spin, Tag, message } from "antd";
+import { message } from "@/utils/message";
+import { Pagination, Spin, Tag } from "antd";
 import { Icon } from "@iconify/react";
 import { useEffect, useMemo, useState } from "react";
 import { fetchErrorLogs } from "../../../api/journal";

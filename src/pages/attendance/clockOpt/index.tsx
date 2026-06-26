@@ -1,15 +1,5 @@
-import {
-  Button,
-  Empty,
-  Form,
-  Input,
-  InputNumber,
-  Radio,
-  Space,
-  Spin,
-  TimePicker,
-  message,
-} from "antd";
+import { message } from "@/utils/message";
+import { Button, Empty, Form, Input, InputNumber, Radio, Space, Spin, TimePicker } from "antd";
 import dayjs from "dayjs";
 import { useEffect, useMemo, useState } from "react";
 import {

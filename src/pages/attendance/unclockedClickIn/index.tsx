@@ -1,8 +1,10 @@
-import { Table, Tag, message } from "antd";
+import { message } from "@/utils/message";
+import { Table, Tag } from "antd";
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { fetchUnclockedByDate } from "../../../api/attendance";
+import { useRouteQueryValue } from "../../../hooks/useRouteQueryValue";
 import {
   AttendanceEmpty,
   AttendanceHeader,
@@ -20,7 +22,7 @@ type UnclockedRecord = {
 
 export function UnclockedClickInPage() {
   const [searchParams] = useSearchParams();
-  const day = searchParams.get("day") || "";
+  const day = useRouteQueryValue(searchParams, ["d", "day"]);
   const [loading, setLoading] = useState(false);
   const [records, setRecords] = useState<UnclockedRecord[]>([]);
 

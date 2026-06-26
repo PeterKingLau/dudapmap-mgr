@@ -1,11 +1,11 @@
-import { Button, DatePicker, Form, Modal, Select, Tag, message } from "antd";
+import { message } from "@/utils/message";
+import { Button, DatePicker, Form, Select, Tag } from "antd";
 import { Icon } from "@iconify/react";
 import dayjs, { type Dayjs } from "dayjs";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   exportAttendanceByDisnameDate,
   exportAttendanceByPhone,
-  fetchAttendanceByPhone,
   fetchAttendanceSummaryByPhone,
 } from "../../../api/attendance";
 import { fetchAllUsers } from "../../../api/user";
@@ -14,7 +14,11 @@ import {
   AttendanceSection,
   AttendanceStats,
   ExportDialog,
+  attendanceSummaryFields,
+  getAttendanceSummaryColumns,
   getRecordObject,
+  normalizeSummaryValue,
+  parseAttendanceSummaryRecords,
 } from "../shared";
 
 const icon = new URL("../../../assets/images/attendance-statistics.png", import.meta.url).href;
@@ -47,50 +51,8 @@ function getMonthEnd(year: number, monthIndex: number) {
 }
 
 function buildExportData(source: unknown) {
-  const summaryLabels = [
-    "总工时",
-    "缺卡次数",
-    "迟到次数",
-    "早退次数",
-    "出勤天数",
-    "严重迟到次数",
-    "严重早退次数",
-    "迟到时长",
-    "早退时长",
-    "严重迟到时长",
-    "严重早退时长",
-  ];
-  const rows: ExportRow[] = [];
-  const columns = [
-    { key: "id", title: "序号" },
-    { key: "name", title: "姓名" },
-    { key: "phone", title: "电话" },
-  ];
-  const record = getRecordObject(source);
-
-  Object.entries(record).forEach(([phone, value], index) => {
-    const itemArr = String(value || "").split("&");
-    const row: ExportRow = {
-      id: index + 1,
-      name: itemArr[0] || "-",
-      phone,
-    };
-
-    for (let i = 1; i < itemArr.length; i += 1) {
-      const key = `d${i}`;
-
-      row[key] = itemArr[i] || "";
-
-      if (index === 0) {
-        columns.push({
-          key,
-          title: summaryLabels[i - 1] || `统计项${i}`,
-        });
-      }
-    }
-
-    rows.push(row);
-  });
+  const rows = parseAttendanceSummaryRecords(source) as ExportRow[];
+  const columns = getAttendanceSummaryColumns<ExportRow>();
 
   return { columns, rows };
 }
@@ -104,8 +66,6 @@ export function ClockTotalPage() {
   const [activeMonth, setActiveMonth] = useState(new Date().getMonth());
   const [selectedDay, setSelectedDay] = useState("");
   const [totalData, setTotalData] = useState<string[]>([]);
-  const [dayRows, setDayRows] = useState<Array<{ recorddate?: string }>>([]);
-  const [dayOpen, setDayOpen] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
   const [exportName, setExportName] = useState("");
   const [exportRows, setExportRows] = useState<ExportRow[]>([]);
@@ -122,12 +82,11 @@ export function ClockTotalPage() {
       })),
     [userRows],
   );
-  const monthStats = [
-    { label: "总工时", value: totalData[1] || 0, theme: "blue" as const },
-    { label: "缺卡次数", value: totalData[2] || 0, theme: "red" as const },
-    { label: "早退次数", value: totalData[3] || 0, theme: "orange" as const },
-    { label: "出勤天数", value: totalData[4] || 0, theme: "green" as const },
-  ];
+  const monthStats = attendanceSummaryFields.map((field) => ({
+    label: field.title,
+    value: normalizeSummaryValue(totalData[field.index], field.valueType),
+    theme: field.theme,
+  }));
 
   useEffect(() => {
     fetchAllUsers().then((res) => {
@@ -171,8 +130,6 @@ export function ClockTotalPage() {
     setTotalData([]);
     setUserPhone(undefined);
     setSelectedDay("");
-    setDayRows([]);
-    setDayOpen(false);
     setExportOpen(false);
     setExportName("");
     setExportRows([]);
@@ -237,19 +194,18 @@ export function ClockTotalPage() {
     const targetDay = dayjs(day).format("YYYY-MM-DD");
 
     setSelectedDay(targetDay);
-    fetchAttendanceByPhone({ dates: targetDay, phone: nextPhone }).then((res) => {
-      const rows = Array.isArray((res as { data?: unknown })?.data)
-        ? ((res as { data?: unknown[] }).data as Array<{ recorddate?: string }>)
-        : [];
+    fetchAttendanceSummaryByPhone({
+      end: targetDay,
+      phone: nextPhone,
+      start: targetDay,
+    }).then((res) => {
+      const row = getRecordObject((res as { data?: unknown })?.data)[nextPhone];
 
-      setDayRows(rows);
+      setTotalData(row ? String(row).split("&") : []);
 
-      if (!rows.length) {
+      if (!row) {
         message.warning("当日无打卡信息！");
-        return;
       }
-
-      setDayOpen(true);
     });
   }
 
@@ -273,24 +229,42 @@ export function ClockTotalPage() {
       return;
     }
 
+    if (period === "日" && !selectedDay) {
+      message.warning("请选择统计日期");
+      return;
+    }
+
+    const start = period === "日" ? selectedDay : getMonthStart(year, activeMonth);
+    const end = period === "日" ? selectedDay : getMonthEnd(year, activeMonth);
+    const dateText = period === "日" ? selectedDay : `${activeMonth + 1}月`;
+
     exportAttendanceByPhone({
-      end: getMonthEnd(year, activeMonth),
+      end,
       phone: userPhone,
-      start: getMonthStart(year, activeMonth),
+      start,
     }).then((res) => {
       openExportDialog(
-        `${username || userPhone}${activeMonth + 1}月考勤信息`,
+        `${username || userPhone}${dateText}考勤信息`,
         (res as { data?: unknown })?.data,
       );
     });
   }
 
   function exportAllRecord() {
+    if (period === "日" && !selectedDay) {
+      message.warning("请选择统计日期");
+      return;
+    }
+
+    const start = period === "日" ? selectedDay : getMonthStart(year, activeMonth);
+    const end = period === "日" ? selectedDay : getMonthEnd(year, activeMonth);
+    const dateText = period === "日" ? selectedDay : `${activeMonth + 1}月`;
+
     exportAttendanceByDisnameDate({
-      end: getMonthEnd(year, activeMonth),
-      start: getMonthStart(year, activeMonth),
+      end,
+      start,
     }).then((res) => {
-      openExportDialog(`${activeMonth + 1}月全员考勤信息`, (res as { data?: unknown })?.data);
+      openExportDialog(`${dateText}全员考勤信息`, (res as { data?: unknown })?.data);
     });
   }
 
@@ -322,7 +296,16 @@ export function ClockTotalPage() {
                 { label: "日", value: "日" },
               ]}
               value={period}
-              onChange={(value) => setPeriod(value)}
+              onChange={(value) => {
+                setPeriod(value);
+                setTotalData([]);
+
+                if (value === "月" && userPhone) {
+                  scheduleAction(() => getDkData(activeMonth, userPhone, year));
+                } else if (value === "日" && selectedDay && userPhone) {
+                  scheduleAction(() => selectDay(selectedDay, userPhone));
+                }
+              }}
             />
           </Form.Item>
           {period === "月" ? (
@@ -378,7 +361,9 @@ export function ClockTotalPage() {
           </AttendanceSection>
           <AttendanceStats items={monthStats} />
         </>
-      ) : null}
+      ) : (
+        <AttendanceStats items={monthStats} />
+      )}
 
       <AttendanceSection
         title="数据导出"
@@ -398,28 +383,6 @@ export function ClockTotalPage() {
       >
         <p className="react-att-muted">选择人员和月份后可查看统计，并导出考勤信息。</p>
       </AttendanceSection>
-
-      <Modal
-        className="react-att-modal"
-        footer={null}
-        open={dayOpen}
-        title="日统计"
-        width={480}
-        onCancel={() => setDayOpen(false)}
-      >
-        <div className="react-att-day-list">
-          <div className="react-att-modal-summary">
-            <Icon icon="ri:calendar-check-line" />
-            <span>{selectedDay || "所选日期"} 打卡记录</span>
-          </div>
-          {dayRows.map((item, index) => (
-            <div className="react-att-result-row" key={`${item.recorddate || "row"}-${index}`}>
-              <span>第 {index + 1} 次打卡时间</span>
-              <strong>{item.recorddate || "-"}</strong>
-            </div>
-          ))}
-        </div>
-      </Modal>
 
       <ExportDialog
         columns={exportColumns}

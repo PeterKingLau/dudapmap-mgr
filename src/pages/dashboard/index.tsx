@@ -1,4 +1,5 @@
-import { Button, message } from "antd";
+import { message } from "@/utils/message";
+import { Button } from "antd";
 import dayjs from "dayjs";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +11,7 @@ import {
 } from "../../api/home";
 import { normalizeLngLat } from "../../utils/baiduMapAdapter";
 import { formatDay } from "../../utils/date";
+import { createRouteQuery } from "../../utils/routeQuery";
 import { HomeMap, type HomeMapReadyEvent } from "../../components/home/HomeMap";
 import { CurrentPositionDialog } from "../../components/home/CurrentPositionDialog";
 import { StaffSheet } from "../../components/home/StaffSheet";
@@ -315,7 +317,9 @@ export function DashboardPage() {
     }
 
     setUnclockedOpen(false);
-    navigate(`/attendance/unclocked?day=${encodeURIComponent(unclockedDate)}`);
+    navigate(
+      `/attendance/unclocked${createRouteQuery({ d: unclockedDate })}`,
+    );
   }
 
   function handleMapReady({ BMap }: HomeMapReadyEvent) {
@@ -451,9 +455,10 @@ export function DashboardPage() {
         onOpenChange={setStaffOpen}
         onOpenRole={(changeName, tel) =>
           navigate(
-            `/system/users/role?changeName=${encodeURIComponent(
-              changeName,
-            )}&tel=${encodeURIComponent(tel)}`,
+            `/system/users/role${createRouteQuery({
+              n: changeName,
+              p: tel,
+            })}`,
           )
         }
         onSelectTab={({ name, title }) => selectRole(name, title)}

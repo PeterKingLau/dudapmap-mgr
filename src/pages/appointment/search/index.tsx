@@ -1,4 +1,5 @@
-import { Button, Form, Input, Spin, Tag, message } from "antd";
+import { message } from "@/utils/message";
+import { Button, Form, Input, Spin, Tag } from "antd";
 import { Icon } from "@iconify/react";
 import { useMemo, useState } from "react";
 import { fetchAppointmentsByPhone } from "../../../api/appointment";

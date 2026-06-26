@@ -1,9 +1,11 @@
-import { Button, Modal, Radio, Spin, Tag, message } from "antd";
+import { message } from "@/utils/message";
+import { Button, Modal, Radio, Spin, Tag } from "antd";
 import { Icon } from "@iconify/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { acceptTask, denyTask, fetchTasks } from "../../../api/task";
 import navTaskIcon from "../../../assets/images/nav-task.png";
+import { useRouteQueryValue } from "../../../hooks/useRouteQueryValue";
 import type { TaskRow } from "../list";
 import "../shared.css";
 
@@ -65,6 +67,7 @@ function parseLegacyTaskQuery(value: string | null) {
 export function TaskDetailPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const taskId = useRouteQueryValue(searchParams, ["id", "taskId"]);
   const [task, setTask] = useState<TaskRow | null>(null);
   const [loading, setLoading] = useState(false);
   const [radio, setRadio] = useState("1");
@@ -104,7 +107,7 @@ export function TaskDetailPage() {
 
   useEffect(() => {
     loadTaskDetail();
-  }, [searchParams]);
+  }, [searchParams, taskId]);
 
   useEffect(
     () => () => {
@@ -122,8 +125,6 @@ export function TaskDetailPage() {
       setTask(legacyTask);
       return;
     }
-
-    const taskId = searchParams.get("taskId");
 
     if (!taskId) {
       setTask(null);
@@ -201,9 +202,6 @@ export function TaskDetailPage() {
     <div className="react-task-page">
       <section className="react-task-header">
         <div className="react-task-header-main">
-          <div className="react-task-header-icon">
-            <img src={navTaskIcon} alt="" />
-          </div>
           <div className="react-task-header-copy">
             <h1>任务详情</h1>
             <p>查看施工任务的人员、联系方式、地址、坐标和派单状态。</p>
@@ -211,6 +209,9 @@ export function TaskDetailPage() {
         </div>
         <div className="react-task-header-side">
           <Tag color={taskStatus.color}>{taskStatus.text}</Tag>
+          <div className="react-task-header-icon">
+            <img src={navTaskIcon} alt="" />
+          </div>
         </div>
       </section>
 

@@ -309,7 +309,10 @@
   width: 15px;
   height: 15px;
   color: currentColor;
+  display: block;
   flex: none;
+  line-height: 1;
+  vertical-align: middle;
 }
 
 .react-att-inline-actions .ant-btn .ant-btn-icon,

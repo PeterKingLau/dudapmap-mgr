@@ -1,4 +1,5 @@
-import { Button, Form, Input, Upload, message } from "antd";
+import { message } from "@/utils/message";
+import { Button, Form, Input, Upload } from "antd";
 import { Icon } from "@iconify/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -10,6 +11,7 @@ import {
 } from "../../api/device";
 import deviceAddIcon from "../../assets/images/device-add.png";
 import navDeviceQueryIcon from "../../assets/images/nav-device-query.png";
+import { useRouteQueryValue } from "../../hooks/useRouteQueryValue";
 import {
   BasicDeviceFields,
   DateField,
@@ -51,7 +53,7 @@ export function DeviceFormPage({ mode }: DeviceFormPageProps) {
   const navigateTimerRef = useRef<number | null>(null);
   const mountedRef = useRef(true);
   const deviceIndex = Number(
-    searchParams.get("index") || searchParams.get("arrindex") || 0,
+    useRouteQueryValue(searchParams, ["i", "index", "arrindex"]) || 0,
   );
   const isCreate = mode === "create";
 

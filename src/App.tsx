@@ -1,4 +1,4 @@
-import { ConfigProvider, Spin, theme } from "antd";
+import { App as AntdApp, ConfigProvider, Spin, theme } from "antd";
 import zhCN from "antd/locale/zh_CN";
 import "dayjs/locale/zh-cn";
 import { Suspense, useEffect, useMemo, useState } from "react";
@@ -6,6 +6,7 @@ import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AppLayout } from "./layouts/AppLayout";
 import { ROUTE_PATHS } from "./router/paths";
 import { appRoutes, LoginPage, NotFoundPage } from "./router/routes";
+import { AntdMessageBridge } from "./utils/message";
 
 const THEME_STORAGE_KEY = "app-theme";
 
@@ -52,30 +53,33 @@ export function App() {
 
   return (
     <ConfigProvider locale={zhCN} theme={reactTheme}>
-      <HashRouter>
-        <Suspense fallback={<AppFallback />}>
-          <Routes>
-            <Route
-              path="/"
-              element={<Navigate to={ROUTE_PATHS.auth.login} replace />}
-            />
-            <Route path={ROUTE_PATHS.auth.login} element={<LoginPage />} />
-            <Route
-              element={
-                <AppLayout
-                  isDarkMode={isDarkMode}
-                  toggleTheme={() => setIsDarkMode((value) => !value)}
-                />
-              }
-            >
-              {appRoutes.map(({ Component, path }) => (
-                <Route key={path} path={path} element={<Component />} />
-              ))}
-            </Route>
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
-      </HashRouter>
+      <AntdApp>
+        <AntdMessageBridge />
+        <HashRouter>
+          <Suspense fallback={<AppFallback />}>
+            <Routes>
+              <Route
+                path="/"
+                element={<Navigate to={ROUTE_PATHS.auth.login} replace />}
+              />
+              <Route path={ROUTE_PATHS.auth.login} element={<LoginPage />} />
+              <Route
+                element={
+                  <AppLayout
+                    isDarkMode={isDarkMode}
+                    toggleTheme={() => setIsDarkMode((value) => !value)}
+                  />
+                }
+              >
+                {appRoutes.map(({ Component, path }) => (
+                  <Route key={path} path={path} element={<Component />} />
+                ))}
+              </Route>
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        </HashRouter>
+      </AntdApp>
     </ConfigProvider>
   );
 }

@@ -1,4 +1,5 @@
-import { Button, DatePicker, Form, Modal, Select, Tag, message } from "antd";
+import { message } from "@/utils/message";
+import { Button, DatePicker, Form, Modal, Select, Tag } from "antd";
 import { Icon } from "@iconify/react";
 import dayjs, { type Dayjs } from "dayjs";
 import { useEffect, useMemo, useRef, useState } from "react";

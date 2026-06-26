@@ -280,6 +280,11 @@
   gap: 10px;
 }
 
+.react-leave-card .react-admin-meta {
+  padding-top: 0;
+  border-top: 0;
+}
+
 .react-admin-meta > div {
   display: grid;
   grid-template-columns: 84px minmax(0, 1fr);

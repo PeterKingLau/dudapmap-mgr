@@ -1,8 +1,10 @@
-import { Button, Form, Radio, message } from "antd";
+import { message } from "@/utils/message";
+import { Button, Form, Radio } from "antd";
 import { Icon } from "@iconify/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { reviewRoleChange } from "../../../api/user";
+import { useRouteQueryValue } from "../../../hooks/useRouteQueryValue";
 import "../shared.css";
 
 const headerIcon = new URL(
@@ -16,8 +18,8 @@ export function ForRolePage() {
   const [radio, setRadio] = useState("1");
   const [submitting, setSubmitting] = useState(false);
   const backTimerRef = useRef<number | null>(null);
-  const changeName = searchParams.get("changeName") || "";
-  const tel = searchParams.get("tel") || "";
+  const changeName = useRouteQueryValue(searchParams, ["n", "changeName"]);
+  const tel = useRouteQueryValue(searchParams, ["p", "tel"]);
   const [oldJob = "", newJob = ""] = useMemo(
     () => changeName.split("-"),
     [changeName],

@@ -1,4 +1,5 @@
-import { Button, Modal, Pagination, Spin, Tag, message } from "antd";
+import { message } from "@/utils/message";
+import { Button, Modal, Pagination, Spin, Tag } from "antd";
 import { Icon } from "@iconify/react";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -7,12 +8,12 @@ import {
   fetchIndoorRecordsByPhone,
 } from "../../../api/indoor";
 import { getImageUrl } from "../../../api/request";
+import { useRouteQueryValue } from "../../../hooks/useRouteQueryValue";
 import "../shared.css";
 
 type IndoorRecord = {
-  __lookupDate?: string;
-  __lookupPhone?: string;
   id?: number | string;
+  infoflag?: string;
   recordaddr?: string;
   recorddate?: string;
   recordimg?: string;
@@ -45,38 +46,6 @@ function formatValue(value: unknown) {
     : String(value);
 }
 
-function isImageName(value: unknown) {
-  return /\.(png|jpe?g|gif|webp|bmp)$/i.test(String(value || ""));
-}
-
-function isPhoneNumber(value: unknown) {
-  return /^1[3-9]\d{9}$/.test(String(value || ""));
-}
-
-function isDateText(value: unknown) {
-  return /^\d{4}[-/]\d{1,2}[-/]\d{1,2}/.test(String(value || ""));
-}
-
-function normalizeIndoorRecord(item: IndoorRecord): IndoorRecord {
-  const normalized = {
-    ...item,
-    __lookupDate: item?.recorddate || "",
-    __lookupPhone: item?.userphone || "",
-  };
-
-  if (isImageName(item?.userphone) && isDateText(item?.recordaddr)) {
-    return {
-      ...normalized,
-      recordaddr: item.recordimg || "",
-      recorddate: item.recordaddr,
-      recordimg: item.userphone,
-      userphone: isPhoneNumber(item.recorddate) ? item.recorddate : "",
-    };
-  }
-
-  return normalized;
-}
-
 function resolveImageUrl(image: unknown) {
   const value = String(image || "");
 
@@ -97,6 +66,12 @@ function getImageKey(item: IndoorRecord, index: number) {
 
 export function IndoorDetailPage() {
   const [searchParams] = useSearchParams();
+  const routeDateValue = useRouteQueryValue(searchParams, ["d", "recorddate"]);
+  const routePhone = useRouteQueryValue(searchParams, [
+    "p",
+    "userphone",
+    "phone",
+  ]);
   const [records, setRecords] = useState<IndoorRecord[]>([]);
   const [loading, setLoading] = useState(false);
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
@@ -123,25 +98,12 @@ export function IndoorDetailPage() {
   const currentPreviewImage = imageList[previewIndex]?.src || "";
 
   useEffect(() => {
-    const routeDate = String(searchParams.get("recorddate") || "").split(
-      " ",
-    )[0];
-    const routePhone = String(
-      searchParams.get("userphone") || searchParams.get("phone") || "",
-    );
-    const lookupPhone = String(searchParams.get("lookupPhone") || "");
-    const lookupDate = String(searchParams.get("lookupDate") || "");
-    const shiftedQuery = isPhoneNumber(routeDate) && isImageName(routePhone);
-    const nextQueryDate = shiftedQuery ? "" : routeDate;
-    const nextQueryPhone = shiftedQuery ? routeDate : routePhone;
+    const routeDate = String(routeDateValue).split(" ")[0];
 
-    setQueryDate(nextQueryDate);
-    setQueryPhone(nextQueryPhone);
-    loadRecords(
-      lookupPhone || (shiftedQuery ? routePhone : nextQueryPhone),
-      lookupDate || (shiftedQuery ? routeDate : nextQueryDate),
-    );
-  }, [searchParams]);
+    setQueryDate(routeDate);
+    setQueryPhone(routePhone);
+    loadRecords(routePhone, routeDate);
+  }, [routeDateValue, routePhone]);
 
   useEffect(() => {
     const maxPage = Math.max(1, Math.ceil(records.length / PAGE_SIZE));
@@ -160,9 +122,7 @@ export function IndoorDetailPage() {
       phone: userphone,
     })
       .then((res) => {
-        const nextRecords = getRows<IndoorRecord>(res).map(
-          normalizeIndoorRecord,
-        );
+        const nextRecords = getRows<IndoorRecord>(res);
         const firstRecord = nextRecords[0];
 
         setRecords(nextRecords);

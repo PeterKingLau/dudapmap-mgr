@@ -1,4 +1,4 @@
-import { message as antdMessage } from "antd";
+import { message as antdMessage } from "../utils/message";
 import axios, {
   type AxiosRequestConfig,
   type AxiosResponse,

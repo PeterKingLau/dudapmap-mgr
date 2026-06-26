@@ -1,4 +1,5 @@
-import { Button, Modal, Pagination, Spin, Tag, message } from "antd";
+import { message } from "@/utils/message";
+import { Button, Modal, Pagination, Spin, Tag } from "antd";
 import { Icon } from "@iconify/react";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";

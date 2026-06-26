@@ -1,18 +1,22 @@
-import { Pagination, Spin, Tag, message } from "antd";
+import { message } from "@/utils/message";
+import { Pagination, Spin, Tag } from "antd";
 import { Icon } from "@iconify/react";
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { fetchIndoorRecords } from "../../../api/indoor";
 import { getImageUrl } from "../../../api/request";
+import { createRouteQuery } from "../../../utils/routeQuery";
 import "../shared.css";
 
 type IndoorRecord = {
-  __lookupDate?: string;
-  __lookupPhone?: string;
   id?: number | string;
+  infoflag?: string;
   recordaddr?: string;
   recorddate?: string;
   recordimg?: string;
+  recordla?: string;
+  recordlo?: string;
+  recordtoken?: string;
   userphone?: string;
 };
 
@@ -26,38 +30,6 @@ function getRows<T>(value: unknown): T[] {
   const data = (value as { data?: unknown })?.data;
 
   return Array.isArray(data) ? (data as T[]) : [];
-}
-
-function isImageName(value: unknown) {
-  return /\.(png|jpe?g|gif|webp|bmp)$/i.test(String(value || ""));
-}
-
-function isPhoneNumber(value: unknown) {
-  return /^1[3-9]\d{9}$/.test(String(value || ""));
-}
-
-function isDateText(value: unknown) {
-  return /^\d{4}[-/]\d{1,2}[-/]\d{1,2}/.test(String(value || ""));
-}
-
-function normalizeIndoorRecord(item: IndoorRecord): IndoorRecord {
-  const normalized = {
-    ...item,
-    __lookupDate: item?.recorddate || "",
-    __lookupPhone: item?.userphone || "",
-  };
-
-  if (isImageName(item?.userphone) && isDateText(item?.recordaddr)) {
-    return {
-      ...normalized,
-      recordaddr: item.recordimg || "",
-      recorddate: item.recordaddr,
-      recordimg: item.userphone,
-      userphone: isPhoneNumber(item.recorddate) ? item.recorddate : "",
-    };
-  }
-
-  return normalized;
 }
 
 function resolveImageUrl(image: unknown) {
@@ -79,24 +51,20 @@ function getImageKey(item: IndoorRecord, index: number) {
 }
 
 function getDetailSearch(item: IndoorRecord) {
-  const params = new URLSearchParams();
-
-  params.set("recorddate", item.recorddate || "");
-  params.set("userphone", item.userphone || "");
-  params.set("lookupPhone", item.__lookupPhone || item.userphone || "");
-  params.set("lookupDate", item.__lookupDate || item.recorddate || "");
-
-  return params.toString();
+  return createRouteQuery({
+    d: item.recorddate,
+    p: item.userphone,
+  });
 }
 
 export function IndoorListPage() {
+  const navigate = useNavigate();
   const [records, setRecords] = useState<IndoorRecord[]>([]);
   const [loading, setLoading] = useState(false);
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
   const [currentPage, setCurrentPage] = useState(1);
   const pageRecords = useMemo(
-    () =>
-      records.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE),
+    () => records.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE),
     [currentPage, records],
   );
 
@@ -105,7 +73,7 @@ export function IndoorListPage() {
     setImageErrors({});
     fetchIndoorRecords()
       .then((res) => {
-        setRecords(getRows<IndoorRecord>(res).map(normalizeIndoorRecord));
+        setRecords(getRows<IndoorRecord>(res));
       })
       .catch(() => {
         setRecords([]);
@@ -123,6 +91,10 @@ export function IndoorListPage() {
       setCurrentPage(maxPage);
     }
   }, [currentPage, records.length]);
+
+  function openDetail(item: IndoorRecord) {
+    navigate(`/business/photos/detail${getDetailSearch(item)}`);
+  }
 
   return (
     <div className="react-indoor-page">
@@ -162,10 +134,11 @@ export function IndoorListPage() {
                 const failed = Boolean(imageErrors[imageKey]);
 
                 return (
-                  <Link
+                  <button
                     className="react-indoor-card"
                     key={imageKey}
-                    to={`/business/photos/detail?${getDetailSearch(item)}`}
+                    type="button"
+                    onClick={() => openDetail(item)}
                   >
                     <div className="react-indoor-image">
                       {imageUrl && !failed ? (
@@ -205,7 +178,7 @@ export function IndoorListPage() {
                         </div>
                       </dl>
                     </div>
-                  </Link>
+                  </button>
                 );
               })}
             </div>

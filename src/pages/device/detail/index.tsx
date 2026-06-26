@@ -1,9 +1,11 @@
-import { Tag, message } from "antd";
+import { message } from "@/utils/message";
+import { Tag } from "antd";
 import { Icon } from "@iconify/react";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { fetchDevices, getImageUrl } from "../../../api/device";
 import navDeviceQueryIcon from "../../../assets/images/nav-device-query.png";
+import { useRouteQueryValue } from "../../../hooks/useRouteQueryValue";
 import {
   DeviceHeader,
   DeviceState,
@@ -43,7 +45,7 @@ export function DeviceDetailPage() {
   const [device, setDevice] = useState<DeviceRow | null>(null);
   const [loading, setLoading] = useState(false);
   const deviceIndex = Number(
-    searchParams.get("index") || searchParams.get("arrindex") || 0,
+    useRouteQueryValue(searchParams, ["i", "index", "arrindex"]) || 0,
   );
 
   const picUrl = useMemo(

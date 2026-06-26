@@ -1,10 +1,12 @@
-import { Button, Modal, Pagination, Spin, Tag, message } from "antd";
+import { message } from "@/utils/message";
+import { Button, Modal, Pagination, Spin, Tag } from "antd";
 import { Icon } from "@iconify/react";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteTaskById, fetchTasks } from "../../../api/task";
 import navTaskIcon from "../../../assets/images/nav-task.png";
 import { useSafeAsync } from "../../../hooks/useSafeAsync";
+import { createRouteQuery } from "../../../utils/routeQuery";
 import "../shared.css";
 
 export type TaskRow = {
@@ -114,7 +116,9 @@ export function TaskListPage() {
       `${TASK_DETAIL_CACHE_KEY}:${task.id}`,
       JSON.stringify(task),
     );
-    navigate(`/business/tasks/detail?taskId=${encodeURIComponent(String(task.id))}`);
+    navigate(
+      `/business/tasks/detail${createRouteQuery({ id: task.id })}`,
+    );
   }
 
   function removeTask(index: number, id?: number | string) {
@@ -142,9 +146,6 @@ export function TaskListPage() {
     <div className="react-task-page">
       <section className="react-task-header">
         <div className="react-task-header-main">
-          <div className="react-task-header-icon">
-            <img src={navTaskIcon} alt="" />
-          </div>
           <div className="react-task-header-copy">
             <h1>全部任务</h1>
             <p>查看任务派发、接受、拒绝与完成情况。</p>
@@ -152,6 +153,9 @@ export function TaskListPage() {
         </div>
         <div className="react-task-header-side">
           <Tag color="blue">{tasks.length} 条</Tag>
+          <div className="react-task-header-icon">
+            <img src={navTaskIcon} alt="" />
+          </div>
         </div>
       </section>
 

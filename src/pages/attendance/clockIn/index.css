@@ -77,19 +77,13 @@
   text-align: left;
   cursor: pointer;
   transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
+    border-color 0.16s ease,
+    box-shadow 0.16s ease;
 }
 
 .react-clockin-card:hover {
-  background: #f8f9fa;
   border-color: #d2e3fc;
-  transform: translateY(-1px);
-}
-
-.react-clockin-card:hover .react-clockin-arrow {
-  color: #13b996;
+  box-shadow: 0 6px 18px rgba(60, 64, 67, 0.08);
 }
 
 .react-clockin-card-icon {
@@ -135,7 +129,6 @@
   width: 20px;
   height: 20px;
   color: #9aa0a6;
-  transition: color 0.2s ease;
 }
 
 .react-query-form .ant-picker,
@@ -205,17 +198,13 @@ html[data-theme="dark"] .react-clockin-card-icon {
   background: rgba(56, 139, 253, 0.14);
 }
 
-html[data-theme="dark"] .react-clockin-card:hover {
-  border-color: #3b82f6;
-  background: #0d1117;
-}
-
 html[data-theme="dark"] .react-clockin-arrow {
   color: #6b7280;
 }
 
-html[data-theme="dark"] .react-clockin-card:hover .react-clockin-arrow {
-  color: #5eead4;
+html[data-theme="dark"] .react-clockin-card:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
 }
 
 html[data-theme="dark"] .react-query-modal .ant-modal-content {

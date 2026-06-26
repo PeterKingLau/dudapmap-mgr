@@ -1,13 +1,11 @@
-import { Button, Checkbox, Form, Input, Modal, Select, message } from "antd";
+import { message } from "@/utils/message";
+import { Button, Checkbox, Form, Input, Modal, Select } from "antd";
 import { Icon } from "@iconify/react";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login, updateLoginUser } from "../../api/auth";
 import { validatePhoneNumber } from "../../utils/validators";
-import {
-  useAppStore,
-  type ReactLoginUser,
-} from "../../store/useAppStore";
+import { useAppStore, type ReactLoginUser } from "../../store/useAppStore";
 import brandLogo from "../../assets/images/brand-logo.png";
 import brandLogoText from "../../assets/images/brand-logo-text.png";
 import iconLocation from "../../assets/images/icon-location.png";
@@ -199,11 +197,7 @@ export function LoginPage() {
       <main className="react-login-shell">
         <section className="react-brand-panel">
           <div className="react-brand-stack">
-            <img
-              className="react-brand-logo"
-              src={brandLogo}
-              alt="Logo"
-            />
+            <img className="react-brand-logo" src={brandLogo} alt="Logo" />
             <img
               className="react-brand-text"
               src={brandLogoText}

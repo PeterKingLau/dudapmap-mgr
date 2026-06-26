@@ -1,14 +1,5 @@
-import {
-  Button,
-  DatePicker,
-  Form,
-  Input,
-  Modal,
-  Radio,
-  Spin,
-  Tag,
-  message,
-} from "antd";
+import { message } from "@/utils/message";
+import { Button, DatePicker, Form, Input, Modal, Radio, Spin, Tag } from "antd";
 import { Icon } from "@iconify/react";
 import dayjs, { type Dayjs } from "dayjs";
 import { useEffect, useRef, useState } from "react";
@@ -434,10 +425,7 @@ function getPreciseAddress(result: GeocoderResult): string {
   );
 }
 
-function getAddressByPoint(
-  api: BaiduMapApi,
-  point: unknown,
-): Promise<string> {
+function getAddressByPoint(api: BaiduMapApi, point: unknown): Promise<string> {
   if (!api.Geocoder || !point) {
     return Promise.resolve("");
   }

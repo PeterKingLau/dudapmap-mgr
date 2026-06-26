@@ -1,4 +1,5 @@
-import { Button, Modal, Spin, Tag, message } from "antd";
+import { message } from "@/utils/message";
+import { Button, Modal, Spin, Tag } from "antd";
 import { Icon } from "@iconify/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +19,7 @@ import {
   type LngLat,
   type PixelOffset,
 } from "../../../utils/baiduMapAdapter";
+import { createRouteQuery } from "../../../utils/routeQuery";
 import navCoordinateIcon from "../../../assets/images/nav-coordinate.png";
 import "./../shared.css";
 
@@ -344,7 +346,7 @@ export function RiderPage() {
       JSON.stringify(task),
     );
     navigate(
-      `/business/tasks/detail?taskId=${encodeURIComponent(String(task.id))}`,
+      `/business/tasks/detail${createRouteQuery({ id: task.id })}`,
     );
   }
 

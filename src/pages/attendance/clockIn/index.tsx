@@ -1,9 +1,11 @@
-import { Button, DatePicker, Form, Modal, Select, message } from "antd";
+import { message } from "@/utils/message";
+import { Button, DatePicker, Form, Modal, Select } from "antd";
 import { Icon } from "@iconify/react";
 import dayjs, { type Dayjs } from "dayjs";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchUserPhones } from "../../../api/user";
+import { createRouteQuery } from "../../../utils/routeQuery";
 import { validatePhoneNumber } from "../../../utils/validators";
 import "./index.css";
 
@@ -190,7 +192,7 @@ export function ClockInPage() {
       return;
     }
 
-    navigate(`/attendance/month?month=${encodeURIComponent(monthValue)}`);
+    navigate(`/attendance/month${createRouteQuery({ m: monthValue })}`);
   }
 
   function searchDay() {
@@ -199,7 +201,7 @@ export function ClockInPage() {
       return;
     }
 
-    navigate(`/attendance/day?day=${encodeURIComponent(dayValue)}`);
+    navigate(`/attendance/day${createRouteQuery({ d: dayValue })}`);
   }
 
   function searchPersonMonth() {
@@ -214,9 +216,10 @@ export function ClockInPage() {
     }
 
     navigate(
-      `/attendance/month-people?monthPeopledate=${encodeURIComponent(
-        monthPeopleDate,
-      )}&monthTel=${encodeURIComponent(monthTel)}`,
+      `/attendance/month-people${createRouteQuery({
+        d: monthPeopleDate,
+        p: monthTel,
+      })}`,
     );
   }
 
@@ -232,9 +235,10 @@ export function ClockInPage() {
     }
 
     navigate(
-      `/attendance/day-people?monthPeopledate=${encodeURIComponent(
-        dayPeopleDate,
-      )}&monthTel=${encodeURIComponent(dayTel)}`,
+      `/attendance/day-people${createRouteQuery({
+        d: dayPeopleDate,
+        p: dayTel,
+      })}`,
     );
   }
 
@@ -254,9 +258,10 @@ export function ClockInPage() {
     }
 
     navigate(
-      `/attendance/duration?start=${encodeURIComponent(
-        durationStartDate,
-      )}&end=${encodeURIComponent(durationEndDate)}`,
+      `/attendance/duration${createRouteQuery({
+        e: durationEndDate,
+        s: durationStartDate,
+      })}`,
     );
   }
 

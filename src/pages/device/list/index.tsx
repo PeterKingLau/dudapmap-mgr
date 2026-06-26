@@ -1,10 +1,12 @@
-import { Button, Tag, message } from "antd";
+import { message } from "@/utils/message";
+import { Button, Tag } from "antd";
 import { Icon } from "@iconify/react";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchDevices } from "../../../api/device";
 import navDeviceQueryIcon from "../../../assets/images/nav-device-query.png";
 import { useSafeAsync } from "../../../hooks/useSafeAsync";
+import { createRouteQuery } from "../../../utils/routeQuery";
 import {
   DeviceHeader,
   DeviceState,
@@ -49,6 +51,14 @@ export function DeviceListPage() {
       onFinally: () => setLoading(false),
     });
   }, [run]);
+
+  function openDeviceDetail(index: number) {
+    navigate(`/devices/detail${createRouteQuery({ i: index })}`);
+  }
+
+  function openDeviceUpdate(index: number) {
+    navigate(`/devices/update${createRouteQuery({ i: index })}`);
+  }
 
   return (
     <div className="react-device-page">
@@ -107,7 +117,7 @@ export function DeviceListPage() {
                 <div className="react-device-card-actions">
                   <Button
                     type="primary"
-                    onClick={() => navigate(`/devices/detail?index=${index}`)}
+                    onClick={() => openDeviceDetail(index)}
                   >
                     <Icon icon="ri:file-list-3-line" />
                     详情
@@ -115,7 +125,7 @@ export function DeviceListPage() {
                   <Button
                     color="green"
                     variant="solid"
-                    onClick={() => navigate(`/devices/update?index=${index}`)}
+                    onClick={() => openDeviceUpdate(index)}
                   >
                     <Icon icon="ri:edit-line" />
                     修改
